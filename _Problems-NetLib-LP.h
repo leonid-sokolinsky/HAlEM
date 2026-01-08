@@ -17,7 +17,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_NORMALIZATION
 //==============================================================================
 
-/*============================== adlittle LP problem ===========================*/
+/*============================== adlittle LP problem ===========================*
 // Number of equations: 15
 // Subspace dimension: 82
 #define PP_PROBLEM_NAME		"adlittle"
@@ -188,8 +188,6 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
 //------------------------------ ifdef PP_SAVE_ITER_RESULT ---------------------
 #define PP_SCALE_FACTOR			1E+7	// #ifdef PP_SAVE_ITER_RESULT; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
-//-------------------------- Compilation Modes ---------------------------------
-#define PP_RND_SEED 0
 //-------------------------- lp_e226_v - VeRSAl.mtx ----------------------------
 // Simplex Number of iterations: 246
 //------------------------------------------------------------------------------
@@ -228,8 +226,6 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_RELATIVE_ERROR	1E-8				 
 //------------------------------ ifdef PP_SAVE_ITER_RESULT ---------------------
 #define PP_SCALE_FACTOR			1E+1					// #ifdef PP_SAVE_ITER_RESULT; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
-//-------------------------- Compilation Modes ---------------------------------
-#define PP_LOAD_BASIS
 //-------------------------- lp_grow7_v - zero.mtx -----------------------------
 // Simplex cycling
 //------------------------------------------------------------------------------
@@ -265,7 +261,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
 //------------------------------ ifdef PP_SAVE_ITER_RESULT ---------------------
-#define PP_SCALE_FACTOR				1E+3					// #ifdef PP_SAVE_ITER_RESULT; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
+#define PP_SCALE_FACTOR			1E+3					// #ifdef PP_SAVE_ITER_RESULT; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_israel_v - VeRSAl.mtx --------------------------
 // Elapsed time: 28.861719      (HAlEM)
 // Number of iterations: 177
@@ -350,14 +346,11 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_N 103	// Number of variables in mps-file
 #define PP_MAX_OBJ_VALUE 52.202061211707248062628010857689 // Exact maximum value of objective function
 //------------------------------------------------------------------------------
-//#define PP_EPS_ZERO				1E-11	// Accuracy for comparison with zero
-//#define PP_EPS_ON_HYPERPLANE	1E-8	// Accuracy of belonging to hyperplane
-//#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-#define PP_MIN_COS				0.03		// Minimum allowable cosine of angle between launch vector and direction vector
-#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+#define PP_EPS_ZERO					1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE		1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH		1E+6	// Length of Objective Vector
+#define PP_MIN_COS					0.03		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR		1E-8	// Termination criteria 
 //-------------------------- lp_sc105_v - zero.mtx -----------------------------
 // Elapsed time: 0.3065865      (HAlEM)
 // Number of iterations: 13
@@ -463,7 +456,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // Distance to polytope: 1.0150724e-12
 //------------------------------------------------------------------------------
 
-/*============================== stocfor1 LP problem ============================*
+/*============================== stocfor1 LP problem ============================*/
 // Number of equations: 63
 // Subspace dimension: 48
 #define PP_PROBLEM_NAME		"stocfor1"	
@@ -474,7 +467,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Precision for point to be in halfspace
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
-#define PP_MIN_COS				0.04		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_MIN_COS				0.04	// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
 //------------------------------ ifdef PP_SAVE_ITER_RESULT ---------------------
 #define PP_SCALE_FACTOR			1E+6	// #ifdef PP_SAVE_ITER_RESULT; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
