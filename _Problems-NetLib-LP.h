@@ -128,10 +128,6 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_N 262	// Number of variables in mps-file
 #define PP_MAX_OBJ_VALUE -33592.4858072
 //------------------------------------------------------------------------------
-//#define PP_EPS_ZERO				1E-9	// Accuracy for comparison with zero
-//#define PP_EPS_ON_HYPERPLANE	1E-9	// Accuracy of belonging to hyperplane
-//#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//#define PP_MIN_COS				0.4		// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
