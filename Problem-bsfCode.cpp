@@ -133,6 +133,7 @@ void PC_bsf_Init(bool* success) {
 		#ifdef PP_RND_SEED
 		srand(PP_RND_SEED);
 		MakeRndBasis_v(PD_neHyperplanes_v, PD_mne_v, PD_meq_basis, PD_basis_v, PP_EPS_INVERSE);
+		SaveBasis(PD_basis_v);
 		#else
 		MakeBasis_v(PD_neHyperplanes_v, PD_mne_v, PD_meq_basis, PD_basis_v, PP_EPS_INVERSE);
 		#endif // PP_RND_SEED
@@ -199,7 +200,7 @@ void PC_bsf_MapF(PT_bsf_mapElem_T* mapElem, PT_bsf_reduceElem_T* reduceElem, int
 
 	/*DEBUG PC_bsf_MapF**
 	#ifdef _DEBUG
-		cout << "------------------------------------ Worker " << BSF_sv_mpiRank << ": Map(" << PF_MAP_LIST_INDEX << ") ------------------------------------" << endl;
+	cout << "------------------------------------ Worker " << BSF_sv_mpiRank << ": Map(" << PF_MAP_LIST_INDEX << ") ------------------------------------" << endl;
 	cout << "Worker " << BSF_sv_mpiRank << ": F(v_cur) = " << ObjF(v_cur) << endl;
 	cout << "basis: "; Vector_i_Print(basis_v);
 	cout << "v_cur = "; Vector_Print(v_cur, PP_EPS_ZERO);
@@ -317,7 +318,6 @@ void PC_bsf_MapF_3(PT_bsf_mapElem_T* mapElem, PT_bsf_reduceElem_T_3* reduceElem,
 }
 
 void PC_bsf_ParametersOutput(PT_bsf_parameter_T parameter) {
-	#ifdef _DEBUG
 	if (BSF_sv_mpiMaster == 0)
 		cout << "No MPI\n" << endl;
 	else {
@@ -325,7 +325,6 @@ void PC_bsf_ParametersOutput(PT_bsf_parameter_T parameter) {
 		cout << "Number of " << CORES_PER_NODE << "-core nodes: " << (BSF_sv_numOfWorkers + 1) / CORES_PER_NODE << endl;
 		cout << "Number of Workers: " << BSF_sv_numOfWorkers << endl;
 	}
-	#endif
 
 	cout << "=================================================== " << PP_METHOD_NAME << " =================================================" << endl;
 	cout << "Problem name: " << PD_problemName << endl;
@@ -480,8 +479,12 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	#endif
 
 	if (Exit(PD_v_nex, reduceResult->v_nex, &exit_code)) {
+
+		#ifdef PP_ITER_OUTPUT
 		PD_jumpLength = Distance_PointToPoint(PD_v_nex, reduceResult->v_nex);
-		IterOutput(PD_iterNo + 1, reduceResult->objF_nex, PD_jumpLength);
+		IterOutput(PD_iterNo + 1, reduceResult->v_nex, PD_jumpLength);
+		#endif // PP_ITER_OUTPUT
+
 		switch (exit_code) {
 		case 1:
 			cout << "|PP_MAX_OBJ_VALUE-F(v_nex)|/|PP_MAX_OBJ_VALUE| = "
@@ -515,8 +518,11 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	Vector_Copy(reduceResult->v_nex, PD_v_nex);
 	PD_i_star = reduceResult->i_star;
 	PD_jumpLength = Distance_PointToPoint(PD_v, PD_v_nex);
+
+	#ifdef PP_ITER_OUTPUT
 	PD_objF_nex = ObjF(PD_v_nex);
-	IterOutput(PD_iterNo, PD_objF_nex, PD_jumpLength);
+	IterOutput(PD_iterNo, PD_v_nex, PD_jumpLength);
+	#endif // PP_ITER_OUTPUT
 
 	#ifdef PP_SAVE_BASIS
 	SaveBasis(PD_basis_v);
@@ -552,7 +558,6 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 
 	Vector_Copy(PD_v_nex, parameter->v);
 	Vector_i_Copy(PD_basis_v_nex, parameter->basis_v);
-	PD_objF_nex = ObjF(PD_v_nex);
 }
 
 void PC_bsf_ProcessResults_1(PT_bsf_reduceElem_T_1* reduceResult, int reduceCounter, PT_bsf_parameter_T* parameter, int* nextJob, bool* exit) {
@@ -3011,10 +3016,14 @@ namespace PF {
 			*success = false;
 	}
 
-	static inline void IterOutput(int iterNo, double objF, double jumpLength) {
+	static inline void IterOutput(int iterNo, PT_vector_T v, double jumpLength) {
 		cout << "_________________________________________________ " << iterNo << " _____________________________________________________" << endl;
-		cout << "ObjF = " << objF << endl;
+		cout << "ObjF = " << ObjF(v) << endl;
 		cout << "Jump length = " << jumpLength << endl;
+		#ifdef PP_MATRIX_OUTPUT
+		cout << "v =\t\t"; Vector_Print(v, PP_EPS_ZERO);
+		cout << endl;
+		#endif // PP_MATRIX_OUTPUT
 	}
 
 	static inline void Jump(PT_vector_T startPoint, PT_vector_T jumpVector, PT_vector_T finishPoint, bool* parallelHPlanes, int* success, double eps_zero) {
@@ -3072,9 +3081,9 @@ namespace PF {
 			AddToBasis(neHyperplanes_v[i], basis_v, m_v, &success, eps_inverse);
 			if (success) {
 				m_v++;
-				#ifdef PP_RND_BASIS_GAUGE
+				#ifdef PP_BASIS_GAUGE
 				if (BSF_sv_mpiRank == BSF_sv_mpiMaster) cout << "MakeRndBasis_v: " << setprecision(5) << (100 * (double)m_v / (double)_n) << "%" << endl << setprecision(PP_SETW / 2);
-				#endif // PP_RND_BASIS_GAUGE
+				#endif // PP_BASIS_GAUGE
 			}
 		}
 		assert(m_v == _n);
@@ -3122,9 +3131,9 @@ namespace PF {
 			AddToBasis(neHyperplanes_v[rnd_i], basis_v, m_v, &success, eps_inverse);
 			if (success) {
 				m_v++;
-				#ifdef PP_RND_BASIS_GAUGE
+				#ifdef PP_BASIS_GAUGE
 				if (BSF_sv_mpiRank == BSF_sv_mpiMaster) cout << "MakeRndBasis_v: " << setprecision(5) << (100 * (double)m_v / (double)_n) << "%" << endl << setprecision(PP_SETW / 2);
-				#endif // PP_RND_BASIS_GAUGE
+				#endif // PP_BASIS_GAUGE
 			}
 		}
 	}
@@ -3487,7 +3496,7 @@ namespace PF {
 	static inline void BasisReplace(PT_vector_T v_nex, PT_vector_i_T basis_v_nex, double* lambda, bool* success) {
 		PT_vector_T cA0I;
 		int i_star;
-		int j_star{};
+		int j_star;
 		static PT_vector_T y;
 
 		BASIS_Make_A0(basis_v_nex);
