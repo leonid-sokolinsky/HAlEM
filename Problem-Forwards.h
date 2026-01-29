@@ -17,7 +17,7 @@ namespace PF {
 	void	GetNextBasis(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star, int* j_star, int* basis_v_nex, bool* nextBasisSuccess, double eps_zero);
 	void	GetUnitDirectionVector(double* v, int* edgeBasis, double* launchVector, double* d, bool* success);
 	void	InsertIntoBasis(int item, int* basis, int i, bool* success, double eps_inverse);
-	void	IterOutput(int iterNo, double objF, double jumpLength);
+	void	IterOutput(int iterNo, PT_vector_T v, double jumpLength);
 	void	Jump(PT_vector_T startPoint, PT_vector_T jumpVector, PT_vector_T finishPoint, bool* parallelHPlanes, int* success, double eps_zero);
 	void	LoadBasis(PT_vector_i_T basis, bool* success);
 	void	MakeBasis_v(int* neHyperplanes_v, int mne_v, int meq_basis, int* basis_v, double eps_inverse);
