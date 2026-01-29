@@ -42,7 +42,7 @@ This source code has been produced with using BSF-skeleton
 //-------------------------- Compilation Modes ---------------------------------
 //#define _NDEBUG
 #define PP_NORMALIZATION
-//#define PP_ITER_OUTPUT 
+#define PP_ITER_OUTPUT 
 //#define PP_MATRIX_OUTPUT
 //#define PP_SAVE_BASIS
 //#define PP_SAVE_ITER_RESULT

@@ -16,12 +16,12 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // PP_LAUNCH_VECTOR_LENGTH - direct dependence on dimension PD_n.
 // P_EPS_ZERO - inverse dependence on PP_LAUNCH_VECTOR_LENGTH.
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-11	// Accuracy for comparison with zero
-#define PP_EPS_ON_HYPERPLANE	1E-3	// Accuracy of belonging to hyperplane
-#define PP_LAUNCH_VECTOR_LENGTH	1E+8	// Length of Objective Vector
-#define PP_EPS_RELATIVE_ERROR	1E-3	// Used if defined PP_CHECK_MAX_OBJ_VALUE 
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-9	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+11	// Length of Objective Vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Used if defined PP_CHECK_MAX_OBJ_VALUE 
 //-------------------------- Compilation Modes ---------------------------------
-//#define PP_GRADIENT
+#define PP_GRADIENT
 //------------------------------------------------------------------------------
 
 /*============================== Klee-Minty5 LP problem ========================*
@@ -30,13 +30,15 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M PP_D		// Number of equations (number of rows in *.mtx)
 #define PP_N (2*PP_D)	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 3125
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.1
 //------------------------------------------------------------------------------
-// Elapsed time: 0
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 9
-// Computed objective value: 3124.99999994883637555176
+// Computed objective value: 3125.00000000000045474735
 // Maximal objective value:  3125
-// Relative error = 1.64e-11
-// Distance to polytope: 4.1299567e-12
+// Relative error = 1.46e-16
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== Klee-Minty6 LP problem ========================*
@@ -45,14 +47,14 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M PP_D		// Number of equations (number of rows in *.mtx)
 #define PP_N (2*PP_D)	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 15625
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.1
 //------------------------------------------------------------------------------
-#define PP_EPS_ON_HYPERPLANE		1E-4	// Accuracy of belonging to hyperplane
-//------------------------------------------------------------------------------
-// Elapsed time: 0
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 11
-// Computed objective value: 15624.9999971797769831028
+// Computed objective value: 15625
 // Maximal objective value:  15625
-// Relative error = 1.8e-10
+// Relative error = 0
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
@@ -62,15 +64,15 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M PP_D		// Number of equations (number of rows in *.mtx)
 #define PP_N (2*PP_D)	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 78125
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.1
 //------------------------------------------------------------------------------
-#define PP_EPS_ON_HYPERPLANE		1E-4	// Accuracy of belonging to hyperplane
-//------------------------------------------------------------------------------
-// Elapsed time: 0
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 13
-// Computed objective value: 78124.9993806063721422106
+// Computed objective value: 78124.9999999999854480848
 // Maximal objective value:  78125
-// Relative error = 7.93e-09
-// Distance to polytope: 7.0479454e-12
+// Relative error = 1.86e-16
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== Klee-Minty8 LP problem ========================*
@@ -79,13 +81,15 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M PP_D		// Number of equations (number of rows in *.mtx)
 #define PP_N (2*PP_D)	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 390625
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.2
 //------------------------------------------------------------------------------
-// Elapsed time: 0
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 15
-// Computed objective value: 390624.961317246488761157
+// Computed objective value: 390625
 // Maximal objective value:  390625
-// Relative error = 9.9e-08
-// Distance to polytope: 0
+// Relative error = 0
+// Distance to polytope: 7.6920415e-16
 //------------------------------------------------------------------------------
 
 /*============================== Klee-Minty9 LP problem ========================*
@@ -94,13 +98,15 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M PP_D		// Number of equations (number of rows in *.mtx)
 #define PP_N (2*PP_D)	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 1953125
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.1
 //------------------------------------------------------------------------------
-// Elapsed time: 0
-// Number of iterations: 11
-// Computed objective value: 1729539.43225225177593529
+// Elapsed time: 0      (HAlEM no MPI)
+// Number of iterations: 17
+// Computed objective value: 1953125
 // Maximal objective value:  1953125
-// Relative error = 0.114
-// Distance to polytope: 0.0037863188
+// Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== Klee-Minty10 LP problem =======================*/
@@ -109,13 +115,15 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M PP_D		// Number of equations (number of rows in *.mtx)
 #define PP_N (2*PP_D)	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 9765625
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.3
 //------------------------------------------------------------------------------
-// Elapsed time: 1
-// Number of iterations: 11
-// Computed objective value: 6974988.29352580383419991
+// Elapsed time: 0      (HAlEM no MPI)
+// Number of iterations: 19
+// Computed objective value: 9765625.0000000111758709
 // Maximal objective value:  9765625
-// Relative error = 0.286
-// Distance to polytope: 0
+// Relative error = 1.14e-15
+// Distance to polytope: 7.6918627e-15
 //------------------------------------------------------------------------------
 
 /*============================== Klee-Minty20 LP problem =======================*
@@ -124,6 +132,8 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M PP_D		// Number of equations (number of rows in *.mtx)
 #define PP_N (2*PP_D)	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 95367431640625
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.4
 //------------------------------------------------------------------------------
 // Elapsed time: 0
 // Number of iterations: 11

@@ -52,6 +52,35 @@ This include file is part of Problem-Parameters.h
 // Distance to polytope: 2.8168833e-21
 //------------------------------------------------------------------------------
 
+/*============================== C5_10 LP problem ===============================*/
+#define PP_PROBLEM_NAME	"C5_10"
+#define PP_MPS_FORMAT
+#define PP_M 42		// Number of constrains
+#define PP_N 5		// Number of variables
+#define PP_MAX_OBJ_VALUE 66429
+// Ciclic polytope C_5(10)  
+// Grunbaum B. Convex Polytopes. 2nd ed. / ed. Kaibel V., Klee V., Ziegler G.M. New York, NY: Springer, 2003. XVI, 471 p. 
+// DOI: https://doi.org/10.1007/978-1-4613-0019-9
+//------------------------------------------------------------------------------
+// https://sagecell.sagemath.org/
+// P = Polyhedron(vertices=[[0,0,0,0,0], [1,1,1,1,1], [2,4,8,16,32], [3,9,27,81,243], [4,16,64,256,1024], [5,25,125,625,3125], [6,36,216,1296,7776], [7,49,343,2401,16807],[8,64,512,4096,32768],[9,81,729,6561,59049]])
+// print(P.inequalities())
+//------------------------------------------------------------------------------
+#undef PP_EPS_ZERO
+#undef PP_LAUNCH_VECTOR_LENGTH
+#define PP_EPS_ZERO				2E-9	// Precision for comparison with zero
+#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
+//-------------------------- Compilation Modes ---------------------------------
+#define PP_MIN_COS 0.6
+//------------------------------------------------------------------------------
+// Elapsed time: 5.6100078e-05  (HAlEM)
+// Number of iterations: 2
+// Computed objective value: 66428.9999947775941109285
+// Maximal objective value:  66429
+// Relative error = 7.86e-11
+// Distance to polytope: 3.3096399e-14
+//------------------------------------------------------------------------------
+
 /*============================== cone3-0 LP problem ============================*
 #define PP_PROBLEM_NAME	"cone3-0"
 #define PP_M 11		// Number of equations (number of rows in *.mtx)
@@ -582,15 +611,19 @@ This include file is part of Problem-Parameters.h
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
-/*============================== zieglerC4_8 LP problem ===============================*/
+/*============================== zieglerC4_8 LP problem ===============================*
 #define PP_PROBLEM_NAME	"zieglerC4_8"
 #define PP_MPS_FORMAT
 #define PP_M 20		// Number of constrains
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 2800
-// Example 0.6. 
-// Ziegler G.M. Lectures on Polytopes. New York, NY: Springer New York, 1995. Vol. 152. XI, 370 p. 
+// Ciclic polytope 
+// Ziegler G.M. Lectures on Polytopes. New York, NY: Springer New York, 1995. Vol. 152. XI, 370 p. (Example 0.6).
 // DOI: https://doi.org/10.1007/978-1-4613-8431-1
+//------------------------------------------------------------------------------
+// https://sagecell.sagemath.org/
+// P = Polyhedron(vertices=[[0,0,0,0], [1,1,1,1], [2,4,8,16], [3,9,27,81], [4,16,64,256], [5,25,125,625], [6,36,216,1296], [7,49,343,2401]])
+// print(P.inequalities())
 //------------------------------------------------------------------------------
 #undef PP_LAUNCH_VECTOR_LENGTH
 #define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
