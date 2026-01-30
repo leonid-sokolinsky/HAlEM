@@ -133,10 +133,12 @@ void PC_bsf_Init(bool* success) {
 		#ifdef PP_RND_SEED
 		srand(PP_RND_SEED);
 		MakeRndBasis_v(PD_neHyperplanes_v, PD_mne_v, PD_meq_basis, PD_basis_v, PP_EPS_INVERSE);
-		SaveBasis(PD_basis_v);
 		#else
 		MakeBasis_v(PD_neHyperplanes_v, PD_mne_v, PD_meq_basis, PD_basis_v, PP_EPS_INVERSE);
 		#endif // PP_RND_SEED
+		#ifdef PP_SAVE_INITIAL_BASIS
+		SaveInitialBasis(PD_basis_v);
+		#endif // PP_SAVE_INITIAL_BASIS
 		#endif // PP_LOAD_BASIS
 	}
 
@@ -277,12 +279,12 @@ void PC_bsf_MapF(PT_bsf_mapElem_T* mapElem, PT_bsf_reduceElem_T* reduceElem, int
 		#ifdef _DEBUG
 		cout << "Worker " << BSF_sv_mpiRank << ": coi = " << coi
 			<< "\t ObjF = " << setprecision(PP_SETW / 2) << objF_nex << "\t\t\t---> Movement is possible" << endl;
-		//#ifdef PP_SAVE_ITER_RESULT
+		//#ifdef PP_SAVE_CURRENT_VERTEX
 		//char buf[6];
 		//sprintf(buf, "%d", PD_iterNo);
 		//string postfix = "_v(" + string(buf) + ").mtx";
 		//if (MTX_SaveVector(v_cur, postfix)) cout << "Current approximation is saved into file *_v(*).mtx" << endl;
-		//#endif // PP_SAVE_ITER_RESULT
+		//#endif // PP_SAVE_CURRENT_VERTEX
 		#endif // _DEBUG /**/
 
 		reduceElem->objF_nex = objF_nex;
@@ -524,12 +526,12 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	IterOutput(PD_iterNo, PD_v_nex, PD_jumpLength);
 	#endif // PP_ITER_OUTPUT
 
-	#ifdef PP_SAVE_BASIS
-	SaveBasis(PD_basis_v);
-	#endif // PP_SAVE_BASIS
-	#ifdef PP_SAVE_ITER_RESULT
+	#ifdef PP_SAVE_CURRENT_BASIS
+	SaveCurrentBasis(PD_basis_v);
+	#endif // PP_SAVE_CURRENT_BASIS
+	#ifdef PP_SAVE_CURRENT_VERTEX
 	SaveIterResult(PD_v, PP_SCALE_FACTOR);
-	#endif // PP_SAVE_ITER_RESULT
+	#endif // PP_SAVE_CURRENT_VERTEX
 
 	Bitscale_Create(PD_basisBitscale_v, PD_m, PD_basis_v, PD_n);
 
@@ -2945,7 +2947,7 @@ namespace PF {
 	}
 
 	static inline void GetUnitDirectionVector(double* v, int* edgeBasis, double* launchVector, double* d, bool* success) {
-		PT_vector_T u; // u = u + launchVector (||launchVector|| = PP_LAUNCH_VECTOR_LENGTH)
+		PT_vector_T u; // u = v + launchVector (||launchVector|| = PP_LAUNCH_VECTOR_LENGTH)
 		PT_vector_T w; // projection of u
 
 		Vector_Addition(v, launchVector, u);
@@ -2960,12 +2962,8 @@ namespace PF {
 			return;
 		}
 
-		if (ObjF(w) > ObjF(v))
-			Vector_Subtraction(w, v, d);
-		else
-			Vector_Subtraction(v, w, d);
-
-		double norm_d = Vector_Norm(d);
+		assert(ObjF(w) > ObjF(v));
+		Vector_Subtraction(w, v, d);
 
 		if (Vector_Norm(d) < PP_EPS_ZERO) {
 			*success = false;
@@ -2974,35 +2972,21 @@ namespace PF {
 
 		Vector_DivideEquals(d, Vector_Norm(d));
 
-		#ifdef PP_MIN_COS //---------------------------------------------------v
+		#ifdef PP_MIN_COS 
 		double cos = fabs(Vector_DotProduct(launchVector, d) / Vector_Norm(launchVector));
 		if (cos > PP_MIN_COS)
 			return;
-		PT_vector_T u_minus_w;
-		Vector_Subtraction(u, w, u_minus_w);
-		Vector_DivideEquals(u_minus_w, Vector_Norm(u_minus_w));
-		PT_vector_T u_stroke;
-		Vector_Addition(w, u_minus_w, u_stroke);
 
-		OrtProjecting(edgeBasis, PD_n - 1, u_stroke, w, success, PP_EPS_INVERSE);
+		//--------------------------- Two-factor projection --------------------------
+		OrtProjecting(edgeBasis, PD_n - 1, w, w, success, PP_EPS_INVERSE);
 		if (!*success) {
 			return;
 		}
-
-		if (ObjF(w) > ObjF(v))
-			Vector_Subtraction(w, v, d);
-		else
-			Vector_Subtraction(v, w, d);
 		Vector_Subtraction(w, v, d);
 		Vector_DivideEquals(d, Vector_Norm(d));
+		//----------------------------------------------------------------------------
 
-		/* Debug GetUnitDirectionVector**
-		PT_vector_T laVe; // Tuned launch vector
-		Vector_Subtraction(u_stroke, v, laVe);
-		cos = fabs(Vector_DotProduct(laVe, d) / Vector_Norm(laVe));
-		/* End Debug GetUnitDirectionVector*/
-
-		#endif // PP_MIN_COS --------------------------------------------------^
+		#endif //PP_MIN_COS
 	}
 
 	static inline void InsertIntoBasis(int item, int* basis, int i, bool* success, double eps_inverse) {
@@ -3320,13 +3304,19 @@ namespace PF {
 			return true;
 	}
 
-	static inline void SaveBasis(PT_vector_i_T basis) {
+	static inline void SaveCurrentBasis(PT_vector_i_T basis) {
 		char buf[4];
 		int no = PD_iterNo % 1000;
 		sprintf(buf, "%d", no);
 		string postfix = "_i(" + string(buf) + ").mtx";
 		if (MTX_SaveVector_i(basis, postfix))
-			cout << "Current basis is saved into file *_i(*).mtx" << endl;
+			cout << "Current basis is saved into file *_i(<iterNo>).mtx" << endl;
+	}
+
+	static inline void SaveInitialBasis(PT_vector_i_T basis) {
+		string postfix = "_i.mtx";
+		if (MTX_SaveVector_i(basis, postfix))
+			cout << "Current basis is saved into file *_i.mtx" << endl;
 	}
 
 	static inline void SaveIterResult(double* v, double scaleFactor) {
@@ -3334,7 +3324,7 @@ namespace PF {
 		sprintf(buf, "%d", (int)(ObjF(v) * scaleFactor));
 		string postfix = "_v(" + string(buf) + ").mtx";
 		if (MTX_SaveVector(v, postfix))
-			cout << "Current approximation is saved into file *_v(*).mtx" << endl;
+			cout << "Current approximation is saved into file *_v(<iterNo>).mtx" << endl;
 	}
 
 	static inline void BASIS_Lambda(PT_vector_T v, PT_vector_T y, double* lambda_min, int* j_star, double eps_zero) {

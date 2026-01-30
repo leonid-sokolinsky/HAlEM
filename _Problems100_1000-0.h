@@ -13,7 +13,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_GRADIENT
-//#define PP_LOAD_BASIS
+#define PP_LOAD_BASIS
 //------------------------------------------------------------------------------
 #define PP_EPS_RELATIVE_ERROR			1E-11			// Used if defined PP_CHECK_MAX_OBJ_VALUE 
 
@@ -26,7 +26,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //#define PP_LAUNCH_VECTOR_LENGTH	1E+7					// Length of Objective Vector
 //==============================================================================
 
-/*============================== cone100-1000-1 LP problem =========================*/
+/*============================== cone100-1000-1 LP problem =========================*
 // m = 2200    n = 100
 #define PP_PROBLEM_NAME	"cone100-1000-1"
 #define PP_M	2100		// Number of equations (number of rows in *.mtx)
@@ -44,6 +44,36 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // Maximal objective value:  20000
 // Relative error = 0
 // Distance to polytope: 0
+//------------------------------------------------------------------------------
+
+/*============================== cone100-2000-1 LP problem =========================*/
+// m = 2200    n = 100
+#define PP_PROBLEM_NAME	"cone100-2000-1"
+#define PP_M	4100		// Number of equations (number of rows in *.mtx)
+#define PP_N	4200		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 40000 
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_MIN_COS				0.9		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
+// ?
+//------------------------------------------------------------------------------
+
+/*============================== cone100-8000-1 LP problem =========================*
+// m = 2200    n = 100
+#define PP_PROBLEM_NAME	"cone100-8000-1"
+#define PP_M	8100		// Number of equations (number of rows in *.mtx)
+#define PP_N	8200		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 80000 
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_MIN_COS				0.9		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
+// ?
 //------------------------------------------------------------------------------
 
 /*============================== rnd100-0 LP problem ===========================*
@@ -104,25 +134,11 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 2264900
 //-----------------------------------------------------------------------------
 
-/*============================== rnd200-0 LP problem ==========================*
-#define PP_PROBLEM_NAME	"rnd200-0"
-#define PP_M	201		// Number of equations (number of rows in *.mtx)
-#define PP_N	401		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 4019900
-//-----------------------------------------------------------------------------
-
 /*============================== rnd250-0 LP problem ==========================*
 #define PP_PROBLEM_NAME	"rnd250-0"
 #define PP_M	251		// Number of equations (number of rows in *.mtx)
 #define PP_N	501		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 6274900
-//-----------------------------------------------------------------------------
-
-/*============================== rnd400-0 LP problem ==========================*
-#define PP_PROBLEM_NAME	"rnd400-0"
-#define PP_M	401		// Number of equations (number of rows in *.mtx)
-#define PP_N	801		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 16039900
 //-----------------------------------------------------------------------------
 
 /*============================== rnd600-0 LP problem ==========================*
@@ -137,14 +153,52 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M	801		// Number of equations (number of rows in *.mtx)
 #define PP_N	1601	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 64079900
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
-/*============================== tcube1K LP problem =========================*
+/*============================== tcube0K2 LP problem ==========================*
+#define PP_PROBLEM_NAME	"tcube0K2"
+#define PP_M	201		// Number of equations (number of rows in *.mtx)
+#define PP_N	401		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 4019900
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
+
+/*============================== tcube0K3 LP problem ===========================*
+#define PP_PROBLEM_NAME	"tcube0K3"
+#define PP_M	301		// Number of equations (number of rows in *.mtx)
+#define PP_N	601		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 9029900
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
+
+/*============================== tcube0K4 LP problem ===========================*
+#define PP_PROBLEM_NAME	"tcube0K4"
+#define PP_M	401		// Number of equations (number of rows in *.mtx)
+#define PP_N	801		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 16039900
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
+
+/*============================== tcube1K LP problem ============================*
 #define PP_PROBLEM_NAME	"tcube1K" // Truncated hypercube
 #define PP_M	1001	// Number of equations (number of rows in *.mtx)
 #define PP_N	2001	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 100099900
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_MIN_COS				0.8		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
 
 /*============================== tcube1K5 LP problem =========================*
 #define PP_PROBLEM_NAME	"tcube1K5" // Truncated hypercube

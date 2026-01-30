@@ -26,7 +26,8 @@ namespace PF {
 	void	MakeRndBasis_v(int* neHyperplanes_v, int mne_v, int meq, int* edgeBasis_v, double eps_inverse);
 	void	OrtProjecting(int* flatHyperplanes, int m_flat, PT_vector_T v, PT_vector_T w, bool* success, double eps_inverse);
 	bool	PointIsVertex(PT_vector_T v, double eps_inverse, double eps_on_hyperplane);
-	void	SaveBasis(PT_vector_i_T basis);
+	void	SaveInitialBasis(PT_vector_i_T basis);
+	void	SaveCurrentBasis(PT_vector_i_T basis);
 	void	SaveIterResult(double* v, double scaleFactor);
 }
 //====================== Shared Functions ======================================

@@ -49,10 +49,10 @@ This include file is part of Problem-Parameters.h
 // Computed objective value: 3300
 // Maximal objective value:  3300
 // Relative error = 0
-// Distance to polytope: 2.8168833e-21
+// Distance to polytope: 6.5585675e-31
 //------------------------------------------------------------------------------
 
-/*============================== C5_10 LP problem ===============================*/
+/*============================== C5_10 LP problem ===============================*
 #define PP_PROBLEM_NAME	"C5_10"
 #define PP_MPS_FORMAT
 #define PP_M 42		// Number of constrains
@@ -67,18 +67,16 @@ This include file is part of Problem-Parameters.h
 // print(P.inequalities())
 //------------------------------------------------------------------------------
 #undef PP_EPS_ZERO
-#undef PP_LAUNCH_VECTOR_LENGTH
 #define PP_EPS_ZERO				2E-9	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.6
 //------------------------------------------------------------------------------
-// Elapsed time: 5.6100078e-05  (HAlEM)
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 2
-// Computed objective value: 66428.9999947775941109285
+// Computed objective value: 66428.999994801139109768
 // Maximal objective value:  66429
-// Relative error = 7.86e-11
-// Distance to polytope: 3.3096399e-14
+// Relative error = 7.83e-11
+// Distance to polytope: 3.2984045e-14
 //------------------------------------------------------------------------------
 
 /*============================== cone3-0 LP problem ============================*
@@ -183,9 +181,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of constrains
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 3.25
-//------------------------------------------------------------------------------
-#undef PP_EPS_ON_HYPERPLANE
-#define PP_EPS_ON_HYPERPLANE		1E-7	// Accuracy of belonging to hyperplane
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_LOAD_BASIS
 #define PP_MIN_COS 0.1
@@ -195,7 +190,7 @@ This include file is part of Problem-Parameters.h
 // Computed objective value: 3.24999999999999911182158
 // Maximal objective value:  3.25
 // Relative error = 2.73e-16
-// Distance to polytope: 0
+// Distance to polytope: 3.7425611e-17
 //------------------------------------------------------------------------------
 
 /*============================== hamck26s LP problem ============================*
@@ -205,9 +200,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 5		// Number of constrains
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 1.25
-//------------------------------------------------------------------------------
-#undef PP_EPS_ON_HYPERPLANE
-#define PP_EPS_ON_HYPERPLANE		1E-7	// Accuracy of belonging to hyperplane
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.1
 //------------------------------------------------------------------------------
@@ -229,11 +221,11 @@ This include file is part of Problem-Parameters.h
 #define PP_MIN_COS 0.4
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 5
+// Number of iterations: 4
 // Computed objective value: 21.4549732313097933911195
 // Maximal objective value:  21.4549732313097933911195
 // Relative error = 0
-// Distance to polytope: 1.8462734e-18
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== pyramid LP problem ============================*
@@ -334,7 +326,7 @@ This include file is part of Problem-Parameters.h
 #define PP_PROBLEM_NAME	"rnd3_3_Olkhovsky336"
 #define PP_M 6		// Number of equations (number of rows in *.mtx)
 #define PP_N 9		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 436.6136021667168733984
+#define PP_MAX_OBJ_VALUE 436.613602166716816554981
 //------------------------------------------------------------------------------
 // https://sagecell.sagemath.org/
 // p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[25928,-32,-67,-92],[47149,-181,-53,-105],[62600,-24,-198,-193],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
@@ -344,10 +336,10 @@ This include file is part of Problem-Parameters.h
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 4
-// Computed objective value: 436.6136021667168733984
-// Maximal objective value:  436.6136021667168733984
+// Computed objective value: 436.613602166716816554981
+// Maximal objective value:  436.613602166716816554981
 // Relative error = 0
-// Distance to polytope: 7.2121453e-16
+// Distance to polytope: 4.8080969e-16
 //------------------------------------------------------------------------------
 
 /*============================== rnd3-10 LP problem ============================*
@@ -370,19 +362,16 @@ This include file is part of Problem-Parameters.h
 #define PP_PROBLEM_NAME	"rnd5-100"
 #define PP_M 105		// Number of equations (number of rows in *.mtx)
 #define PP_N 110		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 617.504337008263632924354
-//------------------------------------------------------------------------------
-#undef	PP_EPS_ON_HYPERPLANE			// Accuracy of belonging to hyperplane
-#define PP_EPS_ON_HYPERPLANE	1E-7	// Accuracy of belonging to hyperplane
+#define PP_MAX_OBJ_VALUE 617.504337008263746611192
 //-------------------------- Compilation Modes ---------------------------------
-//#define PP_MIN_COS 0.6
+#define PP_MIN_COS 0.6
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 11
-// Computed objective value: 617.504337008263632924354
-// Maximal objective value:  617.504337008263632924354
+// Computed objective value: 617.504337008263746611192
+// Maximal objective value:  617.504337008263746611192
 // Relative error = 0
-// Distance to polytope: 1.3240302e-16
+// Distance to polytope: 1.2532012e-16
 //------------------------------------------------------------------------------
 
 /*============================== simple_lcv LP problem =========================*
@@ -411,10 +400,10 @@ This include file is part of Problem-Parameters.h
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
-// Computed objective value: 49998.0000000000145519152
+// Computed objective value: 49998
 // Maximal objective value:  49998
-// Relative error = 2.91e-16
-// Distance to polytope: 1.2316074e-13
+// Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== simple_zcv LP problem =========================*
@@ -427,10 +416,10 @@ This include file is part of Problem-Parameters.h
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
-// Computed objective value: 50000.0000000000145519152
+// Computed objective value: 50000
 // Maximal objective value:  50000
-// Relative error = 2.91e-16
-// Distance to polytope: 1.1368684e-13
+// Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== simple1 LP problem ============================*
@@ -555,10 +544,10 @@ This include file is part of Problem-Parameters.h
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 1
-// Computed objective value: 54999.9999999999563442543
+// Computed objective value: 55000
 // Maximal objective value:  55000
-// Relative error = 7.94e-16
-// Distance to polytope: 6.029155e-14
+// Relative error = 0
+// Distance to polytope: 2.2469334e-15
 //------------------------------------------------------------------------------
 
 /*============================== square3D LP problem ===========================*
@@ -611,7 +600,7 @@ This include file is part of Problem-Parameters.h
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
-/*============================== zieglerC4_8 LP problem ===============================*
+/*============================== zieglerC4_8 LP problem ===============================*/
 #define PP_PROBLEM_NAME	"zieglerC4_8"
 #define PP_MPS_FORMAT
 #define PP_M 20		// Number of constrains
@@ -624,18 +613,15 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // P = Polyhedron(vertices=[[0,0,0,0], [1,1,1,1], [2,4,8,16], [3,9,27,81], [4,16,64,256], [5,25,125,625], [6,36,216,1296], [7,49,343,2401]])
 // print(P.inequalities())
-//------------------------------------------------------------------------------
-#undef PP_LAUNCH_VECTOR_LENGTH
-#define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.6
 //------------------------------------------------------------------------------
-// Elapsed time: 3.4000026e-05  (HAlEM)
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 1
-// Computed objective value: 2799.99999999999045030563
+// Computed objective value: 2799.99999999998681232682
 // Maximal objective value:  2800
-// Relative error = 3.41e-15
-// Distance to polytope: 2.9667532e-15
+// Relative error = 4.71e-15
+// Distance to polytope: 2.3299168e-17
 //------------------------------------------------------------------------------
 
 /*==============================================================================*/
