@@ -13,7 +13,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_GRADIENT
-#define PP_LOAD_BASIS
+//#define PP_LOAD_BASIS
 //------------------------------------------------------------------------------
 #define PP_EPS_RELATIVE_ERROR			1E-11			// Used if defined PP_CHECK_MAX_OBJ_VALUE 
 
@@ -46,34 +46,64 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
-/*============================== cone100-2000-1 LP problem =========================*/
-// m = 2200    n = 100
-#define PP_PROBLEM_NAME	"cone100-2000-1"
-#define PP_M	4100		// Number of equations (number of rows in *.mtx)
-#define PP_N	4200		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 40000 
+/*============================== cone200-200-1 LP problem =========================*
+// m = 800    n = 200
+#define PP_PROBLEM_NAME	"cone200-200-1"
+#define PP_M	600		// Number of equations (number of rows in *.mtx)
+#define PP_N	800		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 40000
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
-#define PP_MIN_COS				0.9		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_MIN_COS				0.5		// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 //------------------------------------------------------------------------------
-// ?
+// Elapsed time: 969.73852	(HAlEM)
+// Number of iterations: 764
+// Computed objective value: 40000
+// Maximal objective value:  40000
+// Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
-/*============================== cone100-8000-1 LP problem =========================*
-// m = 2200    n = 100
-#define PP_PROBLEM_NAME	"cone100-8000-1"
-#define PP_M	8100		// Number of equations (number of rows in *.mtx)
-#define PP_N	8200		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 80000 
+/*============================== cone200-600-1 LP problem =========================*
+// m = 1600    n = 200
+#define PP_PROBLEM_NAME	"cone200-600-1"
+#define PP_M	1400		// Number of equations (number of rows in *.mtx)
+#define PP_N	1600		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 40000
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
-#define PP_MIN_COS				0.9		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_MIN_COS				0.8		// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 //------------------------------------------------------------------------------
-// ?
+// Elapsed time: 1349.4272	(HAlEM)
+// Number of iterations: 1052
+// Computed objective value: 40000
+// Maximal objective value:  40000
+// Relative error = 0
+// Distance to polytope: 0
+//------------------------------------------------------------------------------
+
+/*============================== cone200-1000-1 LP problem =========================*
+// m = 2400    n = 200
+#define PP_PROBLEM_NAME	"cone200-1000-1"
+#define PP_M	2200		// Number of equations (number of rows in *.mtx)
+#define PP_N	2400		// Number of variables (number of cols in *.mtx)
+#define PP_MAX_OBJ_VALUE 40000
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_MIN_COS				0.8		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
+// Elapsed time: 1753.5215	(HAlEM)
+// Number of iterations: 1291
+// Computed objective value: 40000
+// Maximal objective value:  40000
+// Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== rnd100-0 LP problem ===========================*
@@ -165,6 +195,13 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 //------------------------------------------------------------------------------
+// Elapsed time: 135.35999	(HAlEM)
+// Number of iterations: 200
+// Computed objective value: 4019900
+// Maximal objective value:  4019900
+// Relative error = 0
+// Distance to polytope: 0
+//------------------------------------------------------------------------------
 
 /*============================== tcube0K3 LP problem ===========================*
 #define PP_PROBLEM_NAME	"tcube0K3"
@@ -175,6 +212,13 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+//------------------------------------------------------------------------------
+// Elapsed time: 1125.8851	(HAlEM)
+// Number of iterations: 300
+// Computed objective value: 9029900
+// Maximal objective value:  9029900
+// Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== tcube0K4 LP problem ===========================*
@@ -187,6 +231,13 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 //------------------------------------------------------------------------------
+// Elapsed time: 5680.5959	(HAlEM)
+// Number of iterations: 400
+// Computed objective value: 16039900
+// Maximal objective value:  16039900
+// Relative error = 0
+// Distance to polytope: 0
+//------------------------------------------------------------------------------
 
 /*============================== tcube1K LP problem ============================*
 #define PP_PROBLEM_NAME	"tcube1K" // Truncated hypercube
@@ -196,7 +247,6 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
-#define PP_MIN_COS				0.8		// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 //------------------------------------------------------------------------------
 
@@ -205,13 +255,21 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M	1501	// Number of equations (number of rows in *.mtx)
 #define PP_N	3001	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 225149900
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 //-----------------------------------------------------------------------------
 
-/*============================== tcube2K LP problem =========================*
+/*============================== tcube2K LP problem =========================*/
 #define PP_PROBLEM_NAME	"tcube2K" // Truncated hypercube
 #define PP_M	2001	// Number of equations (number of rows in *.mtx)
 #define PP_N	4001	// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 400199900
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 //-----------------------------------------------------------------------------
 
 /*=============================================================================*/

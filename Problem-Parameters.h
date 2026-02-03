@@ -17,7 +17,7 @@ This source code has been produced with using BSF-skeleton
 
 /**
 #include "_Problems100_1000-0.h"
-//#define PP_PATH "../../Set-of-LP-Problems/Rnd-LP/"
+#define PP_PATH "../../Set-of-LP-Problems/Rnd-LP/"
 
 /**
 #include "_Problems-Klee-Minty-Cube.h"
@@ -36,7 +36,6 @@ This source code has been produced with using BSF-skeleton
 #define PP_METHOD_NAME "HAlEM"
 
 //-------------------------- Compilation Modes ---------------------------------
-#define _NDEBUG
 #define PP_NORMALIZATION
 //#define PP_SAVE_INITIAL_BASIS
 //#define PP_ITER_OUTPUT 
@@ -49,6 +48,14 @@ This source code has been produced with using BSF-skeleton
 
 #ifndef PP_EPS_INVERSE
 #define PP_EPS_INVERSE PP_EPS_ZERO
+#endif
+
+#ifndef PP_EPS_ON_HYPERPLANE
+#define PP_EPS_ON_HYPERPLANE PP_EPS_ZERO
+#endif
+
+#ifndef PP_EPS_RELATIVE_ERROR
+#define PP_EPS_RELATIVE_ERROR PP_EPS_ZERO
 #endif
 
 //================================ Problem Paramrters ==========================

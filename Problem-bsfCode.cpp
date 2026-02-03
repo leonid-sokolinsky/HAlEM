@@ -2978,7 +2978,10 @@ namespace PF {
 			return;
 
 		//--------------------------- Two-factor projection --------------------------
-		OrtProjecting(edgeBasis, PD_n - 1, w, w, success, PP_EPS_INVERSE);
+		Vector_MultiplyEquals(d, PP_LAUNCH_VECTOR_LENGTH);
+		Vector_Addition(v, d, u);
+
+		OrtProjecting(edgeBasis, PD_n - 1, u, w, success, PP_EPS_INVERSE);
 		if (!*success) {
 			return;
 		}
@@ -3066,7 +3069,7 @@ namespace PF {
 			if (success) {
 				m_v++;
 				#ifdef PP_BASIS_GAUGE
-				if (BSF_sv_mpiRank == BSF_sv_mpiMaster) cout << "MakeRndBasis_v: " << setprecision(5) << (100 * (double)m_v / (double)_n) << "%" << endl << setprecision(PP_SETW / 2);
+				if (BSF_sv_mpiRank == BSF_sv_mpiMaster) cout << "MakeBasis_v: " << setprecision(5) << (100 * (double)m_v / (double)_n) << "%" << endl << setprecision(PP_SETW / 2);
 				#endif // PP_BASIS_GAUGE
 			}
 		}

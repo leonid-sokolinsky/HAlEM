@@ -9,7 +9,14 @@ This include file is part of Problem-Parameters.h
 #pragma once
 
 //========================== Compilation Modes =================================
-#define PP_GRADIENT
+//#define PP_GRADIENT
+//==============================================================================
+
+//=========================== problem Parameters ===============================
+#define PP_EPS_ZERO				1E-11	// Precision for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-9	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Used if defined PP_CHECK_MAX_OBJ_VALUE 
 //==============================================================================
 
 /*============================== angle03 LP problem ============================*
@@ -21,11 +28,6 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // p = Polyhedron(ieqs = [[55,-0.5,-5,0],[48,-4,-0.8,0],[10,0,0,-1],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.3
 //------------------------------------------------------------------------------
 // Elapsed time: 0
 // Number of iterations: 1
@@ -39,9 +41,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 3		// Number of equations (number of rows in *.mtx)
 #define PP_N 7		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 3300
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.1
 //------------------------------------------------------------------------------
@@ -67,11 +66,10 @@ This include file is part of Problem-Parameters.h
 // P = Polyhedron(vertices=[[0,0,0,0,0], [1,1,1,1,1], [2,4,8,16,32], [3,9,27,81,243], [4,16,64,256,1024], [5,25,125,625,3125], [6,36,216,1296,7776], [7,49,343,2401,16807],[8,64,512,4096,32768],[9,81,729,6561,59049]])
 // print(P.inequalities())
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
+#undef PP_EPS_ZERO
+#define PP_EPS_ZERO				2E-9	// Precision for comparison with zero
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.6
-#undef PP_GRADIENT
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 2
@@ -91,9 +89,6 @@ This include file is part of Problem-Parameters.h
 // p = Polyhedron(ieqs = [[2500,-50,-44,-35],[2500,-50,-28,-42],[2500,-50,-31,-37],[2500,-50,-30,-39],[2500,-50,-43,-26],[2500,-50,-29,-45],[2500,-50,-41,-44],[2500,-50,-26,-27],[50,-1,0,0],[25,0,-1,0],[25,0,0,-1],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 4
 // Computed objective value: 115
@@ -111,9 +106,6 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[0,1,0,0],[0,0,1,0],[0,0,0,1],[195.905942,22.3991,18.6651,-21.4736],[2877.269814,-23.1429,3.55846,5.88321],[169.5608386,24.7497,8.63903,-16.4327],[3530.335398,-22.6279,7.57622,-1.75939],[244.5982238,17.0797,21.9314,-14.5512],[4824.770348,10.1398,-14.2186,-18.8963],[161.7862484,-3.61187,-1.52516,21.3157],[3051.59154,-24.4133,14.23,-4.34812],[119.2281869,7.46864,12.5301,-8.07596],[2726.500748,-9.55916,-13.3038,9.8796],[209.8605304,17.6969,15.5766,-12.2875],[2229.812006,3.16172,-15.4286,1.64876]])
 // p.plot()
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 6
@@ -135,9 +127,6 @@ This include file is part of Problem-Parameters.h
 #endif
 #define PP_MAX_OBJ_VALUE 60000
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0
 // Number of iterations: 3
 // Computed objective value: 60000
@@ -152,9 +141,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of constrains
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 		90000
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.3
 //------------------------------------------------------------------------------
@@ -177,13 +163,10 @@ This include file is part of Problem-Parameters.h
 #define PP_N 6	// Number of cols in *.mtx
 #endif
 #define PP_MAX_OBJ_VALUE 		60000
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+5	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_LOAD_BASIS
 //------------------------------------------------------------------------------
-// Elapsed time: 0      (HAlEM no MPI)
+// Elapsed time: 0
 // Number of iterations: 3
 // Computed objective value: 60000
 // Maximal objective value:  60000
@@ -198,9 +181,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of constrains
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 3.25
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_LOAD_BASIS
 #define PP_MIN_COS 0.1
@@ -220,9 +200,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 5		// Number of constrains
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 1.25
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.1
 //------------------------------------------------------------------------------
@@ -240,11 +217,8 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of constrains
 #define PP_N 5		// Number of variables
 #define PP_MAX_OBJ_VALUE 21.4549732313097933911195
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.4
+#define PP_MIN_COS 0.4
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 4
@@ -265,14 +239,11 @@ This include file is part of Problem-Parameters.h
 // p = Polyhedron(ieqs = [[0,1,0,0],[0,0,1,0,],[0,-1,0,1],[0,0,-1,1],[200,0,0,-1,]])
 // p.plot()
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 1
-// Computed objective value: 60000
+// Number of iterations: 3
+// Computed objective value: 59999.9999999999927240424
 // Maximal objective value:  60000
-// Relative error = 0
+// Relative error = 1.21e-16
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
@@ -287,15 +258,12 @@ This include file is part of Problem-Parameters.h
 // p = Polyhedron(ieqs = [[0,1,0,0],[0,0,1,0,],[0,-1,0,1],[0,0,-1,1],[0,-1,0,2],[0,0,-1,2],[200,0,0,-1,]])
 // p.plot()
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+12	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 1
-// Computed objective value: 42000.0000000000072759576
+// Number of iterations: 2
+// Computed objective value: 42000
 // Maximal objective value:  42000
-// Relative error = 1.73e-16
-// Distance to polytope: 2.8421709e-14
+// Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== rnd3_3_Olkhovsky56 LP problem =================*
@@ -307,11 +275,6 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[25987,-83,-23,-91],[42580,-32,-121,-138],[62862,-166,-64,-169],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.5
 //------------------------------------------------------------------------------
 // Elapsed time: 0
 // Number of iterations: 3
@@ -331,9 +294,6 @@ This include file is part of Problem-Parameters.h
 // p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[63439,-193,-121,-156],[43414,-112,-59,-150],[38965,-187,-12,-96],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 4
 // Computed objective value: 431.817389789161893531855
@@ -351,11 +311,8 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[31312,-64,-90,-63],[8324,-25,-30,-4],[56572,-168,-18,-173],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.2
+#define PP_MIN_COS 0.2
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 4
@@ -374,11 +331,8 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[25928,-32,-67,-92],[47149,-181,-53,-105],[62600,-24,-198,-193],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.2
+#define PP_MIN_COS 0.2
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 4
@@ -392,38 +346,32 @@ This include file is part of Problem-Parameters.h
 #define PP_PROBLEM_NAME	"rnd3-10"
 #define PP_M 13		// Number of equations (number of rows in *.mtx)
 #define PP_N 16		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 397.93897364631123991785
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
+#define PP_MAX_OBJ_VALUE 397.938973646311296761269
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.4
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 5
-// Computed objective value: 397.93897364631123991785
-// Maximal objective value:  397.93897364631123991785
+// Number of iterations: 4
+// Computed objective value: 397.938973646311296761269
+// Maximal objective value:  397.938973646311296761269
 // Relative error = 0
-// Distance to polytope: 1.2274395e-16
+// Distance to polytope: 1.8074672e-16
 //------------------------------------------------------------------------------
 
 /*============================== rnd5-100 LP problem ===========================*
 #define PP_PROBLEM_NAME	"rnd5-100"
 #define PP_M 105		// Number of equations (number of rows in *.mtx)
 #define PP_N 110		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 617.504337008263632924354
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
+#define PP_MAX_OBJ_VALUE 617.504337008263746611192
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.6
+#define PP_MIN_COS 0.6
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 11
-// Computed objective value: 617.504337008263632924354
-// Maximal objective value:  617.504337008263632924354
+// Computed objective value: 617.504337008263746611192
+// Maximal objective value:  617.504337008263746611192
 // Relative error = 0
-// Distance to polytope: 0
+// Distance to polytope: 1.2532012e-16
 //------------------------------------------------------------------------------
 
 /*============================== simple_lcv LP problem =========================*
@@ -431,9 +379,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of equations (number of rows in *.mtx)
 #define PP_N 7		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 		50000.2
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.3
 //------------------------------------------------------------------------------
@@ -450,11 +395,8 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of equations (number of rows in *.mtx)
 #define PP_N 7		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 		49998
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.3
+#define PP_MIN_COS 0.3
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
@@ -469,11 +411,8 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of equations (number of rows in *.mtx)
 #define PP_N 7		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 		50000
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.3
+#define PP_MIN_COS 0.3
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
@@ -499,9 +438,6 @@ This include file is part of Problem-Parameters.h
 // p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[500,-1,-1,-1],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0
 // Number of iterations: 3
 // Computed objective value: 55000
@@ -516,9 +452,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 4		// Number of equations (number of rows in *.mtx)
 #define PP_N 7		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 		40000
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0
 // Number of iterations: 2
@@ -536,9 +469,6 @@ This include file is part of Problem-Parameters.h
 #define PP_N 3		// Number of variables
 #define PP_MAX_OBJ_VALUE 52500
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0
 // Number of iterations: 1
 // Computed objective value: 52500
@@ -553,15 +483,12 @@ This include file is part of Problem-Parameters.h
 #define PP_N 8		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 		-5000
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+8	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 1
-// Computed objective value: -5000
+// Computed objective value: -5000.0000000000009094947
 // Maximal objective value:  -5000
-// Relative error = 0
-// Distance to polytope: 8.2046408e-15
+// Relative error = 1.82e-16
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== simple2 LP problem ============================*
@@ -576,9 +503,6 @@ This include file is part of Problem-Parameters.h
 #define PP_N 8		// Nnumber of cols in *.mtx
 #endif
 #define PP_MAX_OBJ_VALUE 		63500
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
@@ -595,9 +519,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 6		// Number of constraints
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 	63500
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
@@ -618,11 +539,8 @@ This include file is part of Problem-Parameters.h
 #define PP_N 8		// Nnumber of cols in *.mtx
 #endif
 #define PP_MAX_OBJ_VALUE 		55000
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.3
+#define PP_MIN_COS 0.3
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 1
@@ -639,9 +557,6 @@ This include file is part of Problem-Parameters.h
 #define PP_N 3		// Number of variables
 #define PP_MAX_OBJ_VALUE 		50000
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 2
 // Computed objective value: 50000
@@ -656,9 +571,6 @@ This include file is part of Problem-Parameters.h
 #define PP_M 7		// Number of constrains
 #define PP_N 4		// Number of variables
 #define PP_MAX_OBJ_VALUE 		36200
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 2
@@ -679,9 +591,6 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // p = Polyhedron(ieqs = [[10,-3,-2,-1],[15,-2,-5,-3],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
 // p.plot()
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 1
@@ -704,18 +613,15 @@ This include file is part of Problem-Parameters.h
 // https://sagecell.sagemath.org/
 // P = Polyhedron(vertices=[[0,0,0,0], [1,1,1,1], [2,4,8,16], [3,9,27,81], [4,16,64,256], [5,25,125,625], [6,36,216,1296], [7,49,343,2401]])
 // print(P.inequalities())
-//------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+5	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.6
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 1
-// Computed objective value: 2800.00000000000363797881
+// Computed objective value: 2799.99999999998681232682
 // Maximal objective value:  2800
-// Relative error = 1.3e-15
-// Distance to polytope: 2.0125379e-16
+// Relative error = 4.71e-15
+// Distance to polytope: 2.3299168e-17
 //------------------------------------------------------------------------------
 
 /*==============================================================================*/

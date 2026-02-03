@@ -13,7 +13,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MPS_FORMAT
 
 //========================== Compilation Modes =================================
-#define PP_GRADIENT
+//#define PP_GRADIENT
 #define PP_NORMALIZATION
 //==============================================================================
 
@@ -26,16 +26,19 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 		-225494.96316238038228101176621492
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+5	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+8	// Length of Objective Vector
 #define PP_MIN_COS				0.15	// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-9	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR				1E+3		// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //------------------------------------------------------------------------------
-// Elapsed time: 2.439439       (HAlEM)
-// Number of iterations: 81
+// Elapsed time: 2.2611693      (HAlEM)
+// Number of iterations: 72
 // Computed objective value: -225494.963162380357971415
 // Maximal objective value:  -225494.963162380387075245
 // Relative error = 1.29e-16
-// Distance to polytope: 2.8189014e-14
+// Distance to polytope: 8.8593566e-15
 //------------------------------------------------------------------------------
 
 /*============================== afiro LP problem ==============================*
@@ -47,9 +50,12 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 464.75314285714285714285714285714
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-8	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+8	// Length of Objective Vector
 #define PP_MIN_COS				0.05	// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR					1E+6		// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
@@ -59,7 +65,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // Distance to polytope: 2.6110149e-14
 //------------------------------------------------------------------------------
 
-/*============================== agg LP problem ================================*
+/*============================== agg LP problem ================================* 
 // Number of equations : 36
 // Subspace dimension : 127
 #define PP_PROBLEM_NAME		"agg"
@@ -69,20 +75,21 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-7	// Accuracy for comparison with zero
 #define PP_EPS_INVERSE			1E-10	// Accuracy for comparison with zero when calculating inverse matrix
-#define PP_EPS_ON_HYPERPLANE	1E-7	// Accuracy of belonging to hyperplane
-#define PP_LAUNCH_VECTOR_LENGTH	1E+12	// Length of Objective Vector
-#define PP_EPS_RELATIVE_ERROR	1E-10	// Termination criteria 
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-6	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+1	// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
+//-------------------------- Compilation Modes ---------------------------------
 #define PP_RND_SEED 0
-#undef PP_GRADIENT
 //------------------------------------------------------------------------------
-// Elapsed time: 6.2810964      (HAlEM)
+// Elapsed time: 6.3831624      (HAlEM)
 // Number of iterations: 27
-// Computed objective value: 35991767.2865764871239662
+// Computed objective value: 35991767.2865765020251274
 // Maximal objective value:  35991767.286576509475708
-// Relative error = 6.21e-16
-// Distance to polytope: 2.565356e-09
+// Relative error = 2.07e-16
+// Distance to polytope: 2.4568484e-10
 //------------------------------------------------------------------------------
 
 /*============================== agg2 LP problem ===============================*
@@ -96,18 +103,21 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_ZERO				1E-5	// Accuracy for comparison with zero
 #define PP_EPS_INVERSE			1E-10	// Accuracy for comparison with zero when calculating inverse matrix
 #define PP_EPS_ON_HYPERPLANE	1E-5	// Accuracy of belonging to hyperplane
-#define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
-#define PP_EPS_RELATIVE_ERROR	1E-10	// Termination criteria 
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
+#define PP_MIN_COS				0.3		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-9	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+1	// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.4		// Minimum allowable cosine of angle between launch vector and direction vector
-#define PP_RND_SEED				6		
+#define PP_RND_SEED 6 // Number of iterations: 106
+//#define PP_LOAD_BASIS
 //------------------------- lp_agg_v2 - VeRSAl.mtx -----------------------------
-// Elapsed time: 67.913874	(HAlEM 12 nodes)
-// Number of iterations: 99
-// Computed objective value: 20239252.3559771180152893
+// Elapsed time: 275.78599      (HAlEM)
+// Number of iterations: 81
+// Computed objective value: 20239252.3559770993888378
 // Maximal objective value:  20239252.3559771105647087
-// Relative error = 3.68e-16
-// Distance to polytope: 7.6389956e-11
+// Relative error = 5.52e-16
+// Distance to polytope: 2.636752e-09
 //------------------------------------------------------------------------------
 
 /*============================== beaconfd LP problem ===========================*
@@ -119,18 +129,21 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE -33592.4858072
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
+#define PP_MIN_COS				0.05		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
 //------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
 #define PP_SCALE_FACTOR					1E+3					// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.05		// Minimum allowable cosine of angle between launch vector and direction vector
+//#define PP_RND_SEED 0
 //------------------------- beaconfd - VeRSAl.mtx ------------------------------
-// Elapsed time: 15.85563       (HAlEM)
+// Elapsed time: 15.02126       (HAlEM)
 // Number of iterations: 15
 // Computed objective value: -33592.4858071999988169409
 // Maximal objective value:  -33592.4858071999988169409
 // Relative error = 0
-// Distance to polytope: 2.2250649e-13
+// Distance to polytope: 2.235977e-13
 //------------------------------------------------------------------------------
 
 /*============================== blend LP problem ==============================*
@@ -142,17 +155,22 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 30.812149845828220173774356124984	// Exact maximum value of objective function
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-7	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-7	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
 #define PP_MIN_COS				0.15	// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+7	// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
+//-------------------------- Compilation Modes ---------------------------------
+//#define PP_RND_SEED 6 // Number of iterations: 106
 #define PP_LOAD_BASIS
 //-------------------------- lp_blend_v - zero.mtx -----------------------------
-// Elapsed time: 0.4417359      (HAlEM)
-// Number of iterations: 35
-// Computed objective value: 30.8121498458282445653822
+// Elapsed time: 0.4357452      (HAlEM)
+// Number of iterations: 32
+// Computed objective value: 30.8121498458282161436728
 // Maximal objective value:  30.8121498458282196963864
-// Relative error = 8.07e-16
-// Distance to polytope: 1.5649846e-15
+// Relative error = 1.15e-16
+// Distance to polytope: 3.1299693e-15
 //------------------------------------------------------------------------------
 
 /*============================== e226 LP problem ===============================*
@@ -239,17 +257,19 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 896644.82186304572966200464196045	// Exact maximum value of objective function
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+4	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
-#undef PP_GRADIENT
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+3					// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_israel_v - VeRSAl.mtx --------------------------
-// Elapsed time: 22.841373      (HAlEM)
-// Number of iterations: 145
-// Computed objective value: 896644.821863041375763714
+// Elapsed time: 24.757315      (HAlEM)
+// Number of iterations: 151
+// Computed objective value: 896644.821863050456158817
 // Maximal objective value:  896644.821863045683130622
-// Relative error = 4.8e-15
-// Distance to polytope: 2.231563e-11
+// Relative error = 5.32e-15
+// Distance to polytope: 2.7808735e-11
 //------------------------------------------------------------------------------
 
 /*============================== kb2 LP problem ================================*
@@ -261,9 +281,15 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 1749.9001299062057129526866493726
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-7	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+4	// Length of Objective Vector
+#define PP_EPS_ON_HYPERPLANE	1E-7	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+5	// Length of Objective Vector
+//#define PP_MIN_COS				0.05	// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_MIN_COS				0.8	// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR				1E+5					// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- Compilation Modes ---------------------------------
-#define PP_MIN_COS				0.05	// Minimum allowable cosine of angle between launch vector and direction vector
+//#define PP_LOAD_BASIS
 //-------------------------- lp_kb2_v - zero.mtx -------------------------------
 // Elapsed time: 0.0265821      (HAlEM)
 // Number of iterations: 19
@@ -301,11 +327,12 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 266.616 // Exact maximum value of objective function
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.15	// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
 //-------------------------- p_recipe_v - VeRSAl.mtx ---------------------------
-// Elapsed time: 3.2890236      (HAlEM)
+// Elapsed time: 3.2350127      (HAlEM)
 // Number of iterations: 12
 // Computed objective value: 266.616000000000269665179
 // Maximal objective value:  266.615999999999985448085
@@ -324,10 +351,10 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_EPS_ZERO					1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE		1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH		1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS					0.03		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR		1E-8	// Termination criteria 
 //-------------------------- lp_sc105_v - zero.mtx -----------------------------
-// Elapsed time: 0.2956356      (HAlEM)
+// Elapsed time: 0.3065865      (HAlEM)
 // Number of iterations: 13
 // Computed objective value: 52.2020612117072460023337
 // Maximal objective value:  52.2020612117072460023337
@@ -344,16 +371,19 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 64.575077058564509026860413914575	// Exact maximum value of objective function
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.1		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR				1E+7					// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_sc50a_v - zero.mtx -----------------------------
-// Elapsed time: 0.0110985      (HAlEM)
+// Elapsed time: 1      (HAlEM no MPI)
 // Number of iterations: 7
 // Computed objective value: 64.5750770585645028631916
 // Maximal objective value:  64.5750770585645028631916
 // Relative error = 0
-// Distance to polytope: 2.0097183e-14
+// Distance to polytope: 3.2818563e-14
 //------------------------------------------------------------------------------
 
 /*============================== sc50b LP problem ==============================*
@@ -365,16 +395,19 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 70	// Exact maximum value of objective function
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 #define PP_MIN_COS				0.15		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+7	// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_sc50b_v - zero.mtx -----------------------------
-// Elapsed time: 0.0092768      (HAlEM)
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 5
 // Computed objective value: 70
 // Maximal objective value:  70
 // Relative error = 0
-// Distance to polytope: 2.4371415e-14
+// Distance to polytope: 2.0097183e-14
 //------------------------------------------------------------------------------
 
 /*============================== scagr7 LP problem =============================*
@@ -386,15 +419,18 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 2331389.824330984	// Exact maximum value of objective function
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Accuracy of belonging to hyperplane
+#define PP_LAUNCH_VECTOR_LENGTH	1E+8	// Length of Objective Vector
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+2	// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_scagr7_v - zero.mtx ----------------------------
-// Elapsed time: 1.8088778      (HAlEM)
-// Number of iterations: 30
-// Computed objective value: 2331389.82433098368346691
+// Elapsed time: 1.7063533      (HAlEM)
+// Number of iterations: 27
+// Computed objective value: 2331389.8243309841491282
 // Maximal objective value:  2331389.8243309841491282
-// Relative error = 2e-16
+// Relative error = 0
 // Distance to polytope: 4.067384e-13
 //------------------------------------------------------------------------------
 
@@ -408,16 +444,18 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //--------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-11	// Accuracy of belonging to hyperplane
-#define PP_LAUNCH_VECTOR_LENGTH	1E+11	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_LAUNCH_VECTOR_LENGTH	1E+5	// Length of Objective Vector
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Acceptable error for optimum of objective function
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+6	// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_share2b_v - VeRSAl.mtx -------------------------
-// Elapsed time: 0.4358254      (HAlEM)
+// Elapsed time: 0.5357794      (HAlEM)
 // Number of iterations: 27
-// Computed objective value: 415.732240741419332152873
+// Computed objective value: 415.732240741421321672533
 // Maximal objective value:  415.732240741419502683129
-// Relative error = 4.1e-16
-// Distance to polytope: 1.0139262e-12
+// Relative error = 4.38e-15
+// Distance to polytope: 4.3243715e-12
 //------------------------------------------------------------------------------
 
 /*============================== stocfor1 LP problem ============================*/
@@ -427,18 +465,21 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_M 117	// Number of constraints in mps-file
 #define PP_N 111	// Number of variables in mps-file
 #define PP_MAX_OBJ_VALUE 41131.976219436406065682760731514 // Exact maximum value of objective function
-//------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
+#define PP_EPS_ON_HYPERPLANE	1E-10	// Precision for point to be in halfspace
+#define PP_LAUNCH_VECTOR_LENGTH	1E+9	// Length of Objective Vector
 #define PP_MIN_COS				0.04	// Minimum allowable cosine of angle between launch vector and direction vector
+#define PP_EPS_RELATIVE_ERROR	1E-8	// Termination criteria 
+//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
+#define PP_SCALE_FACTOR			1E+6	// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_stocfor1_v - VeRSAl.mtx ------------------------
-// Elapsed time: 0.3831306      (HAlEM)
-// Number of iterations: 12
+// Elapsed time: 0.3026513      (HAlEM)
+// Number of iterations: 9
 // Computed objective value: 41131.9762194368377095088
 // Maximal objective value:  41131.9762194364084280096
 // Relative error = 1.04e-14
-// Distance to polytope: 1.8317233e-12
+// Distance to polytope: 1.8368824e-12
 //------------------------------------------------------------------------------
 
 //==============================================================================*/
