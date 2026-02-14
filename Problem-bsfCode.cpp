@@ -462,6 +462,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 			bool success;
 			BasisReplace(PD_v_nex, PD_basis_v_nex, &lambda, &success);
 			if (!success) {
+				Vector_Copy(PD_v_nex, PD_v);
 				*exit = true;
 				return;
 			}
@@ -489,9 +490,11 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 
 		switch (exit_code) {
 		case 1:
+			#ifdef PP_MAX_OBJ_VALUE
 			cout << "|PP_MAX_OBJ_VALUE-F(v_nex)|/|PP_MAX_OBJ_VALUE| = "
 				<< RelativeError(PP_MAX_OBJ_VALUE, reduceResult->objF_nex)
 				<< " < PP_EPS_RELATIVE_ERROR = " << PP_EPS_RELATIVE_ERROR << endl;
+			#endif // PP_MAX_OBJ_VALUE
 			break;
 		case 2:
 			cout << "|F(v)-F(v_nex)|/|F(v)| = " << RelativeError(ObjF(PD_v_nex), reduceResult->objF_nex)
