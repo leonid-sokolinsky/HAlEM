@@ -255,14 +255,6 @@ void PC_bsf_MapF(PT_bsf_mapElem_T* mapElem, PT_bsf_reduceElem_T* reduceElem, int
 	Vector_Addition(v_cur, d, u_grd);
 	objF_grd = ObjF(u_grd);
 	if (objF_grd > reduceElem->objF_grd + PP_EPS_ZERO) {
-
-		/*DEBUG PC_bsf_MapF**
-		#ifdef _DEBUG
-		cout << "Worker " << BSF_sv_mpiRank << "\tF(u_grd) = " << setprecision(PP_SETW / 2) << objF_grd
-			<< "\tObjF = " << setprecision(PP_SETW / 2) << objF_nex << "\t\t\t---> Movement is possible" << endl;
-		//if (MTX_SaveVector(v_nex, PP_MTX_POSTFIX_V)) cout << "Current approximation is saved into file *.u" << endl;
-		#endif // _DEBUG /**/
-
 		reduceElem->objF_grd = objF_grd;
 		reduceElem->objF_nex = objF_nex;
 		Vector_Copy(v_nex, reduceElem->v_nex);
@@ -675,8 +667,8 @@ namespace SF {
 			bitscale[i] = false;
 	}
 
-	static inline void Column_Zeroing(PT_vector_T u) {  // u = 0
-		for (int i = 0; i < _m; i++) u[i] = 0;
+	static inline void Column_Zeroing(PT_vector_T y) {  // y = 0
+		for (int i = 0; i < _m; i++) y[i] = 0;
 	}
 
 	static inline double Distance_PointToHalfspace_i(PT_vector_T x, int i) {
@@ -766,7 +758,7 @@ namespace SF {
 	}
 
 	static inline void MakeNeHyperplane_x(PT_vector_T x, int* neHyperplanes_all, int mneh_all, int* neHyperplanes_x, int* mneh_x, double eps_on_hyperplane) {
-		// List of boundary hyperplanes that include point u.
+		// List of boundary hyperplanes that include point x.
 		*mneh_x = 0;
 		for (int i = 0; i < mneh_all; i++) {
 			if (PointBelongsToHyperplane_i(x, neHyperplanes_all[i], eps_on_hyperplane)) {
@@ -2950,12 +2942,12 @@ namespace PF {
 	}
 
 	static inline void GetUnitDirectionVector(double* v, int* edgeBasis, double* launchVector, double* d, bool* success) {
-		PT_vector_T u; // u = v + launchVector (||launchVector|| = PP_LAUNCH_VECTOR_LENGTH)
-		PT_vector_T w; // projection of u
+		PT_vector_T z; // z = v + launchVector (||launchVector|| = PP_LAUNCH_VECTOR_LENGTH)
+		PT_vector_T w; // projection of z
 
-		Vector_Addition(v, launchVector, u);
+		Vector_Addition(v, launchVector, z);
 
-		OrtProjecting(edgeBasis, PD_n - 1, u, w, success, PP_EPS_INVERSE);
+		OrtProjecting(edgeBasis, PD_n - 1, z, w, success, PP_EPS_INVERSE);
 		if (!*success) {
 			//#ifdef _DEBUG
 			cout << "Worker " << BSF_sv_mpiRank
@@ -2982,9 +2974,9 @@ namespace PF {
 
 		//--------------------------- Two-factor projection --------------------------
 		Vector_MultiplyEquals(d, PP_LAUNCH_VECTOR_LENGTH);
-		Vector_Addition(v, d, u);
+		Vector_Addition(v, d, z);
 
-		OrtProjecting(edgeBasis, PD_n - 1, u, w, success, PP_EPS_INVERSE);
+		OrtProjecting(edgeBasis, PD_n - 1, z, w, success, PP_EPS_INVERSE);
 		if (!*success) {
 			return;
 		}
@@ -3272,14 +3264,14 @@ namespace PF {
 	/* Direct orthogonal projection:
 	[Murty K.G. Computational and Algorithmic Linear Algebra and n-Dimensional Geometry. Singapore: World Scientific, 2011. xxi, 552 p. DOI:https://doi.org/10.1142/8261]
 	p. 361, Nearest Point When S = {x : Ax = b}. */
-	static inline void OrtProjecting(int* flatHyperplanes, int m_flat, PT_vector_T v, PT_vector_T w, bool* success,
+	static inline void OrtProjecting(int* flatHyperplanes, int m_flat, PT_vector_T z, PT_vector_T w, bool* success,
 		double eps_inverse) {
 
 		PT_vector_T r;
 		assert(m_flat <= _n);
 
 		Ort_D_and_B(flatHyperplanes, m_flat, _n);
-		Ort_Dv_B(v, m_flat, _n);
+		Ort_Dv_B(z, m_flat, _n);
 		Ort_DT(m_flat, _n);
 		Ort_DDT(m_flat, _n);
 
@@ -3290,7 +3282,7 @@ namespace PF {
 		//assert(Ort_Check_DDT_DDTI(m_flat));
 		Ort_DTDDTI(m_flat, _n);
 		Ort_r(r, m_flat, _n);
-		Vector_Subtraction(v, r, w);
+		Vector_Subtraction(z, r, w);
 	}
 
 	static inline bool PointIsVertex(PT_vector_T v, double eps_inverse, double eps_on_hyperplane) {
