@@ -460,7 +460,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 
 		while (lambda < PP_EPS_ZERO) {
 			bool success;
-			BasisReplace(PD_v_nex, PD_basis_v_nex, &lambda, &success);
+			Basis_Scroll(PD_v_nex, PD_basis_v_nex, &lambda, &success);
 			if (!success) {
 				Vector_Copy(PD_v_nex, PD_v);
 				*exit = true;
@@ -552,7 +552,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	#endif // _DEBUG
 
 	PD_j_star = 0;
-	GetNextBasis(PD_neHyperplanes_v_nex, PD_mne_v_nex, PD_basisBitscale_v, PD_i_star, &PD_j_star, PD_basis_v_nex,
+	Basis_Update(PD_neHyperplanes_v_nex, PD_mne_v_nex, PD_basisBitscale_v, PD_i_star, &PD_j_star, PD_basis_v_nex,
 		&nextBasisSuccess, PP_EPS_ZERO);
 
 	if (!nextBasisSuccess) {
@@ -2929,7 +2929,7 @@ namespace PF {
 		return false;
 	}
 
-	static inline void GetNextBasis(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star, int* j_star,
+	static inline void Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star, int* j_star,
 		int* basis_v_nex, bool* nextBasisSuccess, double eps_inverse) {
 
 		*nextBasisSuccess = false;
@@ -3489,7 +3489,7 @@ namespace PF {
 		return true;
 	}
 
-	static inline void BasisReplace(PT_vector_T v_nex, PT_vector_i_T basis_v_nex, double* lambda, bool* success) {
+	static inline void Basis_Scroll(PT_vector_T v_nex, PT_vector_i_T basis_v_nex, double* lambda, bool* success) {
 		PT_vector_T cA0I;
 		int i_star;
 		int j_star;
@@ -3501,7 +3501,7 @@ namespace PF {
 		BASIS_Make_u(PD_u, basis_v_nex, cA0I, PP_EPS_ZERO);
 
 		if (BASIS_NegativeNotFoundIn_u(PD_u, PP_EPS_ZERO)) {
-			cout << "BasisReplace: Negative values are not foud in u!" << endl;
+			cout << "Basis_Scroll: Negative values are not foud in u!" << endl;
 			*success = false;
 			return;
 		}
