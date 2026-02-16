@@ -543,8 +543,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	}
 	#endif // _DEBUG
 
-	PD_j_star = 0;
-	Basis_Update(PD_neHyperplanes_v_nex, PD_mne_v_nex, PD_basisBitscale_v, PD_i_star, &PD_j_star, PD_basis_v_nex,
+	Basis_Update(PD_neHyperplanes_v_nex, PD_mne_v_nex, PD_basisBitscale_v, PD_i_star, PD_basis_v_nex,
 		&nextBasisSuccess, PP_EPS_ZERO);
 
 	if (!nextBasisSuccess) {
@@ -2921,19 +2920,21 @@ namespace PF {
 		return false;
 	}
 
-	static inline void Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star, int* j_star,
-		int* basis_v_nex, bool* nextBasisSuccess, double eps_inverse) {
+	static inline void Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star,	
+		int* basis_v_nex, bool* nextBasisSuccess, double eps_inverse) 
+	{
+		int j_star = 0;
 
 		*nextBasisSuccess = false;
 
-		while (*j_star < mne_v) {
-			if (basisBitscale_v[neHyperplanes_v_nex[*j_star]]) {
-				(*j_star)++;
+		while (j_star < mne_v) {
+			if (basisBitscale_v[neHyperplanes_v_nex[j_star]]) {
+				j_star++;
 				continue;
 			}
 			bool success;
-			InsertIntoBasis(neHyperplanes_v_nex[*j_star], basis_v_nex, i_star, &success, eps_inverse);
-			(*j_star)++;
+			InsertIntoBasis(neHyperplanes_v_nex[j_star], basis_v_nex, i_star, &success, eps_inverse);
+			j_star++;
 			if (success) {
 				*nextBasisSuccess = true;
 				break;

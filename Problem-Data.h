@@ -43,7 +43,6 @@ static int PD_basis_v[PP_N];			// Basis in vertex v
 static int PD_basis_v_nex[PP_N];		// Basis in next vertex
 
 static int PD_i_star;					// Item index to exclude from basis of v
-static int PD_j_star;					// Index of item to include into basis
 
 static double PD_jumpLength;
 static PT_bitscale_T PD_basisBitscale_v;// Bit scale that tags all hyperplanes forming a basis for v_nex

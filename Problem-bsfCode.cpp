@@ -255,14 +255,6 @@ void PC_bsf_MapF(PT_bsf_mapElem_T* mapElem, PT_bsf_reduceElem_T* reduceElem, int
 	Vector_Addition(v_cur, d, u_grd);
 	objF_grd = ObjF(u_grd);
 	if (objF_grd > reduceElem->objF_grd + PP_EPS_ZERO) {
-
-		/*DEBUG PC_bsf_MapF**
-		#ifdef _DEBUG
-		cout << "Worker " << BSF_sv_mpiRank << "\tF(u_grd) = " << setprecision(PP_SETW / 2) << objF_grd
-			<< "\tObjF = " << setprecision(PP_SETW / 2) << objF_nex << "\t\t\t---> Movement is possible" << endl;
-		//if (MTX_SaveVector(v_nex, PP_MTX_POSTFIX_V)) cout << "Current approximation is saved into file *.u" << endl;
-		#endif // _DEBUG /**/
-
 		reduceElem->objF_grd = objF_grd;
 		reduceElem->objF_nex = objF_nex;
 		Vector_Copy(v_nex, reduceElem->v_nex);
@@ -551,8 +543,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	}
 	#endif // _DEBUG
 
-	PD_j_star = 0;
-	Basis_Update(PD_neHyperplanes_v_nex, PD_mne_v_nex, PD_basisBitscale_v, PD_i_star, &PD_j_star, PD_basis_v_nex,
+	Basis_Update(PD_neHyperplanes_v_nex, PD_mne_v_nex, PD_basisBitscale_v, PD_i_star, PD_basis_v_nex,
 		&nextBasisSuccess, PP_EPS_ZERO);
 
 	if (!nextBasisSuccess) {
@@ -2929,19 +2920,21 @@ namespace PF {
 		return false;
 	}
 
-	static inline void Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star, int* j_star,
-		int* basis_v_nex, bool* nextBasisSuccess, double eps_inverse) {
+	static inline void Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star,
+		int* basis_v_nex, bool* nextBasisSuccess, double eps_inverse)
+	{
+		int j_star = 0;
 
 		*nextBasisSuccess = false;
 
-		while (*j_star < mne_v) {
-			if (basisBitscale_v[neHyperplanes_v_nex[*j_star]]) {
-				(*j_star)++;
+		while (j_star < mne_v) {
+			if (basisBitscale_v[neHyperplanes_v_nex[j_star]]) {
+				j_star++;
 				continue;
 			}
 			bool success;
-			InsertIntoBasis(neHyperplanes_v_nex[*j_star], basis_v_nex, i_star, &success, eps_inverse);
-			(*j_star)++;
+			InsertIntoBasis(neHyperplanes_v_nex[j_star], basis_v_nex, i_star, &success, eps_inverse);
+			j_star++;
 			if (success) {
 				*nextBasisSuccess = true;
 				break;

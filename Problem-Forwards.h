@@ -11,7 +11,7 @@ This source code has been produced with using BSF-skeleton
 namespace PF {
 	void	AddToBasis(int i, int* basis, int m_basis, bool* success, double eps_inverse);
 	void	Basis_Scroll(PT_vector_T v_nex, PT_vector_i_T basis_v_nex, double* lambda, bool* success);
-	void	Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star, int* j_star, int* basis_v_nex, bool* nextBasisSuccess, double eps_zero);
+	void	Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star, int* basis_v_nex, bool* nextBasisSuccess, double eps_zero);
 	void	CheckBelongnessToPolytope(double* v, bool* exit);
 	bool	Exit(double* v, double* v_nex, int* exit_code);
 	void	CheckRank(int* neHyperplanes_v, int mne_v, bool* exit, double eps_inverse);

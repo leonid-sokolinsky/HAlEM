@@ -407,14 +407,14 @@ This include file is part of Problem-Parameters.h
 // Distance to polytope: 1.2274395e-16
 //------------------------------------------------------------------------------
 
-/*============================== rnd5-100 LP problem ===========================*
+/*============================== rnd5-100 LP problem ===========================*/
 #define PP_PROBLEM_NAME	"rnd5-100"
 #define PP_M 105		// Number of equations (number of rows in *.mtx)
 #define PP_N 110		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 617.504337008263632924354
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.6
 //------------------------------------------------------------------------------
@@ -691,7 +691,7 @@ This include file is part of Problem-Parameters.h
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
-/*============================== zieglerC4_8 LP problem ===============================*/
+/*============================== zieglerC4_8 LP problem ===============================*
 #define PP_PROBLEM_NAME	"zieglerC4_8"
 #define PP_MPS_FORMAT
 #define PP_M 20		// Number of constrains
