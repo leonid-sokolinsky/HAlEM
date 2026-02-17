@@ -2958,8 +2958,10 @@ namespace PF {
 			return;
 		}
 
-		assert(ObjF(w) > ObjF(v));
-		Vector_Subtraction(w, v, d);
+		if (ObjF(w) > ObjF(v))
+			Vector_Subtraction(w, v, d);
+		else
+			Vector_Subtraction(v, w, d);
 
 		if (Vector_Norm(d) < PP_EPS_ZERO) {
 			*success = false;
@@ -2981,7 +2983,12 @@ namespace PF {
 		if (!*success) {
 			return;
 		}
-		Vector_Subtraction(w, v, d);
+
+		if (ObjF(w) > ObjF(v))
+			Vector_Subtraction(w, v, d);
+		else
+			Vector_Subtraction(v, w, d);
+
 		Vector_DivideEquals(d, Vector_Norm(d));
 		//----------------------------------------------------------------------------
 
@@ -3474,8 +3481,6 @@ namespace PF {
 
 	static inline bool BASIS_NegativeNotFoundIn_u(PT_column_T u, double eps_zero) {
 		for (int i = 0; i < _m; i++) {
-			if (PD_isEquation[i])
-				continue;
 			if (u[i] < -eps_zero)
 				return false;
 		}
@@ -3507,8 +3512,7 @@ namespace PF {
 
 				BASIS_Make_y(basis_v_nex, i, y);
 				BASIS_Lambda(v_nex, y, lambda, &j_star, PP_EPS_ZERO);
-				if (j_star == -1)
-					continue;
+				assert(j_star >= 0);
 
 				i_star = i;
 				break;

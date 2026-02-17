@@ -288,14 +288,14 @@ This include file is part of Problem-Parameters.h
 // p.plot()
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+12	// Length of Objective Vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 1
-// Computed objective value: 42000.0000000000072759576
+// Computed objective value: 41999.9999999999854480848
 // Maximal objective value:  42000
-// Relative error = 1.73e-16
-// Distance to polytope: 2.8421709e-14
+// Relative error = 3.46e-16
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== rnd3_3_Olkhovsky56 LP problem =================*
@@ -392,19 +392,19 @@ This include file is part of Problem-Parameters.h
 #define PP_PROBLEM_NAME	"rnd3-10"
 #define PP_M 13		// Number of equations (number of rows in *.mtx)
 #define PP_N 16		// Number of variables (number of cols in *.mtx)
-#define PP_MAX_OBJ_VALUE 397.93897364631123991785
+#define PP_MAX_OBJ_VALUE 397.938973646311296761269
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+10	// Length of Objective Vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.4
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 5
-// Computed objective value: 397.93897364631123991785
-// Maximal objective value:  397.93897364631123991785
+// Number of iterations: 4
+// Computed objective value: 397.938973646311296761269
+// Maximal objective value:  397.938973646311296761269
 // Relative error = 0
-// Distance to polytope: 1.2274395e-16
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== rnd5-100 LP problem ===========================*/
