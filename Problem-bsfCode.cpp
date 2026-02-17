@@ -2911,12 +2911,14 @@ namespace PF {
 		}
 		#endif // PP_MAX_OBJ_VALUE
 
+		/**
 		double relativeError = RelativeError(objF_nex, ObjF(v));
 		if (relativeError < PP_EPS_RELATIVE_ERROR) {
 			cout << "|F(v)-F(v_nex)|/|F(v)| = " << relativeError << " < PP_EPS_RELATIVE_ERROR = " << PP_EPS_RELATIVE_ERROR << endl;
 			*exit_code = 2;
 			return true;
 		}
+		/**/
 		return false;
 	}
 
@@ -3027,6 +3029,10 @@ namespace PF {
 		PT_vector_T lambda_min_DOT_d;
 
 		for (int i = 0; i < _m; i++) {
+
+			if (PD_isEquation[i])
+				continue;
+
 			if (parallelHPlanes[i])
 				continue;
 
