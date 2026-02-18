@@ -3343,6 +3343,8 @@ namespace PF {
 		*lambda_min = PP_INFINITY;
 		*j_star = -1;
 		for (int j = 0; j < PD_m; j++) {
+			if (PD_isEquation[j])
+				continue;
 			double a_j_DOT_y = Vector_DotProduct(_A[j], y);
 			if (a_j_DOT_y > eps_zero) {
 				double lambda = (_b[j] - Vector_DotProduct(_A[j], v)) / a_j_DOT_y;

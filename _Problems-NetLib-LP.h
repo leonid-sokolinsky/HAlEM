@@ -26,16 +26,16 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 		-225494.96316238038228101176621492
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+5	// Length of Objective Vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.15	// Minimum allowable cosine of angle between launch vector and direction vector
 //------------------------------------------------------------------------------
-// Elapsed time: 2.439439       (HAlEM)
-// Number of iterations: 81
-// Computed objective value: -225494.963162380357971415
+// Elapsed time: 1.9538218      (HAlEM)
+// Number of iterations: 67
+// Computed objective value: -225494.963162380416179076
 // Maximal objective value:  -225494.963162380387075245
 // Relative error = 1.29e-16
-// Distance to polytope: 2.8189014e-14
+// Distance to polytope: 1.7718713e-14
 //------------------------------------------------------------------------------
 
 /*============================== afiro LP problem ==============================*
@@ -292,7 +292,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // Simplex cycling!
 //------------------------------------------------------------------------------
 
-/*============================== recipe LP problem =============================*
+/*============================== recipe LP problem =============================*/
 // Number of equations: 67
 // Subspace dimension: 92 
 #define PP_PROBLEM_NAME		"recipe"
@@ -420,7 +420,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // Distance to polytope: 1.0139262e-12
 //------------------------------------------------------------------------------
 
-/*============================== stocfor1 LP problem ============================*/
+/*============================== stocfor1 LP problem ============================*
 // Number of equations: 63
 // Subspace dimension: 48
 #define PP_PROBLEM_NAME		"stocfor1"	
