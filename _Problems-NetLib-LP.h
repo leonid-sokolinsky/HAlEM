@@ -30,7 +30,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.15	// Minimum allowable cosine of angle between launch vector and direction vector
 //------------------------------------------------------------------------------
-// Elapsed time: 1.9538218      (HAlEM)
+// Elapsed time: 1.87969        (HAlEM)
 // Number of iterations: 67
 // Computed objective value: -225494.963162380416179076
 // Maximal objective value:  -225494.963162380387075245
@@ -38,7 +38,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 // Distance to polytope: 1.7718713e-14
 //------------------------------------------------------------------------------
 
-/*============================== afiro LP problem ==============================*
+/*============================== afiro LP problem ==============================*/
 // Number of equations : 8
 // Subspace dimension : 24
 #define PP_PROBLEM_NAME	"afiro"
@@ -69,20 +69,18 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-7	// Accuracy for comparison with zero
 #define PP_EPS_INVERSE			1E-10	// Accuracy for comparison with zero when calculating inverse matrix
-#define PP_EPS_ON_HYPERPLANE	1E-7	// Accuracy of belonging to hyperplane
-#define PP_LAUNCH_VECTOR_LENGTH	1E+12	// Length of Objective Vector
-#define PP_EPS_RELATIVE_ERROR	1E-10	// Termination criteria 
+#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_RND_SEED 0
 #undef PP_GRADIENT
 //------------------------------------------------------------------------------
-// Elapsed time: 6.2810964      (HAlEM)
+// Elapsed time: 5.9567699      (HAlEM)
 // Number of iterations: 27
-// Computed objective value: 35991767.2865764871239662
+// Computed objective value: 35991767.2865764945745468
 // Maximal objective value:  35991767.286576509475708
-// Relative error = 6.21e-16
-// Distance to polytope: 2.565356e-09
+// Relative error = 4.14e-16
+// Distance to polytope: 2.1256465e-11
 //------------------------------------------------------------------------------
 
 /*============================== agg2 LP problem ===============================*
@@ -102,12 +100,12 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MIN_COS				0.4		// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_RND_SEED				6		
 //------------------------- lp_agg_v2 - VeRSAl.mtx -----------------------------
-// Elapsed time: 67.913874	(HAlEM 12 nodes)
-// Number of iterations: 99
+// Elapsed time: 304.20992      (HAlEM)
+// Number of iterations: 83
 // Computed objective value: 20239252.3559771180152893
 // Maximal objective value:  20239252.3559771105647087
 // Relative error = 3.68e-16
-// Distance to polytope: 7.6389956e-11
+// Distance to polytope: 3.1949827e-11
 //------------------------------------------------------------------------------
 
 /*============================== beaconfd LP problem ===========================*
@@ -120,12 +118,10 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Accuracy for comparison with zero
 #define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
-//------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
-#define PP_SCALE_FACTOR					1E+3					// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.05		// Minimum allowable cosine of angle between launch vector and direction vector
 //------------------------- beaconfd - VeRSAl.mtx ------------------------------
-// Elapsed time: 15.85563       (HAlEM)
+// Elapsed time: 13.157378      (HAlEM)
 // Number of iterations: 15
 // Computed objective value: -33592.4858071999988169409
 // Maximal objective value:  -33592.4858071999988169409
@@ -147,7 +143,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MIN_COS				0.15	// Minimum allowable cosine of angle between launch vector and direction vector
 #define PP_LOAD_BASIS
 //-------------------------- lp_blend_v - zero.mtx -----------------------------
-// Elapsed time: 0.4417359      (HAlEM)
+// Elapsed time:  0.4258722      (HAlEM)
 // Number of iterations: 35
 // Computed objective value: 30.8121498458282445653822
 // Maximal objective value:  30.8121498458282196963864
@@ -190,7 +186,9 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
 #define PP_SCALE_FACTOR					1E+5					// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //------------------------------------------------------------------------------
-// Simplex cycling
+#define PP_LOAD_BASIS
+//------------------------------------------------------------------------------
+// ?
 //------------------------------------------------------------------------------
 
 /*============================== grow7 LP problem ============================*
@@ -210,7 +208,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
 #define PP_SCALE_FACTOR			1E+1					// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_grow7_v - zero.mtx -----------------------------
-// Simplex cycling
+// ?
 //------------------------------------------------------------------------------
 
 /*============================== grow15 LP problem =============================*
@@ -281,7 +279,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_N 308	// Number of variables in mps-file (after conversion to standard form)
 #define PP_MAX_OBJ_VALUE 25.26470606188
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-7	// Accuracy for comparison with zero
+#define PP_EPS_ZERO				1E-6	// Accuracy for comparison with zero
 #define PP_EPS_ON_HYPERPLANE	1E-9	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 #define PP_MIN_COS				0.8		// Minimum allowable cosine of angle between launch vector and direction vector
@@ -289,10 +287,10 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //------------------------------ ifdef PP_SAVE_ITER_VERTEX ---------------------
 #define PP_SCALE_FACTOR			1E+7				// #ifdef PP_SAVE_ITER_VERTEX; makes 9 digits before the decimal point of PP_MAX_OBJ_VALUE
 //-------------------------- lp_lotfi_v -  VeRSAl ------------------------------
-// Simplex cycling!
+// ?
 //------------------------------------------------------------------------------
 
-/*============================== recipe LP problem =============================*/
+/*============================== recipe LP problem =============================*
 // Number of equations: 67
 // Subspace dimension: 92 
 #define PP_PROBLEM_NAME		"recipe"
@@ -305,7 +303,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.15	// Minimum allowable cosine of angle between launch vector and direction vector
 //-------------------------- p_recipe_v - VeRSAl.mtx ---------------------------
-// Elapsed time: 3.2890236      (HAlEM)
+// Elapsed time: 2.1402347      (HAlEM)
 // Number of iterations: 12
 // Computed objective value: 266.616000000000269665179
 // Maximal objective value:  266.615999999999985448085
@@ -322,7 +320,6 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 #define PP_MAX_OBJ_VALUE 52.202061211707248062628010857689 // Exact maximum value of objective function
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO					1E-10	// Accuracy for comparison with zero
-#define PP_EPS_ON_HYPERPLANE		1E-10	// Accuracy of belonging to hyperplane
 #define PP_LAUNCH_VECTOR_LENGTH		1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS					0.03		// Minimum allowable cosine of angle between launch vector and direction vector
@@ -348,7 +345,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.1		// Minimum allowable cosine of angle between launch vector and direction vector
 //-------------------------- lp_sc50a_v - zero.mtx -----------------------------
-// Elapsed time: 0.0110985      (HAlEM)
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 7
 // Computed objective value: 64.5750770585645028631916
 // Maximal objective value:  64.5750770585645028631916
@@ -369,7 +366,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.15		// Minimum allowable cosine of angle between launch vector and direction vector
 //-------------------------- lp_sc50b_v - zero.mtx -----------------------------
-// Elapsed time: 0.0092768      (HAlEM)
+// Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 5
 // Computed objective value: 70
 // Maximal objective value:  70
@@ -390,7 +387,7 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
 //-------------------------- lp_scagr7_v - zero.mtx ----------------------------
-// Elapsed time: 1.8088778      (HAlEM)
+// Elapsed time: 1.7939882      (HAlEM)
 // Number of iterations: 30
 // Computed objective value: 2331389.82433098368346691
 // Maximal objective value:  2331389.8243309841491282
@@ -412,12 +409,12 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.2		// Minimum allowable cosine of angle between launch vector and direction vector
 //-------------------------- lp_share2b_v - VeRSAl.mtx -------------------------
-// Elapsed time: 0.4358254      (HAlEM)
+// Elapsed time: 0.4126653      (HAlEM)
 // Number of iterations: 27
-// Computed objective value: 415.732240741419332152873
+// Computed objective value: 415.732240741419502683129
 // Maximal objective value:  415.732240741419502683129
-// Relative error = 4.1e-16
-// Distance to polytope: 1.0139262e-12
+// Relative error = 0
+// Distance to polytope: 1.0150572e-12
 //------------------------------------------------------------------------------
 
 /*============================== stocfor1 LP problem ============================*
@@ -433,11 +430,11 @@ LP problems are available in https://github.com/leonid-sokolinsky/Set-of-LP-Prob
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.04	// Minimum allowable cosine of angle between launch vector and direction vector
 //-------------------------- lp_stocfor1_v - VeRSAl.mtx ------------------------
-// Elapsed time: 0.3831306      (HAlEM)
+// Elapsed time: 0.3660967      (HAlEM)
 // Number of iterations: 12
-// Computed objective value: 41131.9762194368377095088
+// Computed objective value: 41131.9762194368449854665
 // Maximal objective value:  41131.9762194364084280096
-// Relative error = 1.04e-14
+// Relative error = 1.06e-14
 // Distance to polytope: 1.8317233e-12
 //------------------------------------------------------------------------------
 

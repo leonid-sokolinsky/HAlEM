@@ -152,12 +152,9 @@ void PC_bsf_IterInit(PT_bsf_parameter_T parameter) {
 }
 
 void PC_bsf_IterOutput(PT_bsf_reduceElem_T* reduceResult, int reduceCounter, PT_bsf_parameter_T parameter,
-	double elapsedTime, int nextJob) {
-
-	cout << "# " << BSF_sv_iterCounter << "\tTime " << round(elapsedTime);
-	cout << "\tx =";
-	Vector_Print(parameter.v, PP_EPS_ZERO);
-	cout << "\tF(x) = " << setw(PP_SETW) << ObjF(parameter.v);
+	double elapsedTime, int nextJob)
+{
+	// Not used
 }
 
 void PC_bsf_IterOutput_1(PT_bsf_reduceElem_T_1* reduceResult, int reduceCounter, PT_bsf_parameter_T parameter,
@@ -218,15 +215,19 @@ void PC_bsf_MapF(PT_bsf_mapElem_T* mapElem, PT_bsf_reduceElem_T* reduceElem, int
 	reduceElem->i_star = PD_meq_basis + mapElem->edgeIndex;
 
 	MakeEdgeBasis(basis_v, reduceElem->i_star, edgeBasis);
-	GetUnitDirectionVector(v_cur, edgeBasis, PD_launchVector, d, &success);
+	double norm_d;
+	GetUnitDirectionVector(v_cur, edgeBasis, PD_launchVector, d, &norm_d, &success);
 	if (!success) {
 		*mapSuccess = false;
 		return;
 	}
 
-	Bitscale_Create(basisBitscale, PD_m, edgeBasis, PD_n - 1);
+	#ifdef _DEBUG
+	reduceElem->norm_d = norm_d;
+	#endif
 
-	Jump(v_cur, d, v_nex, basisBitscale, mapSuccess, PP_EPS_ZERO);
+	Bitscale_Create(basisBitscale, PD_m, edgeBasis, PD_n - 1);
+	Jump(v_cur, d, v_nex, basisBitscale, &reduceElem->j_star, mapSuccess, PP_EPS_ZERO);
 	if (*mapSuccess != 1) {
 		/*DEBUG PC_bsf_MapF**
 		#ifdef _DEBUG
@@ -383,8 +384,7 @@ void PC_bsf_ParametersOutput(PT_bsf_parameter_T parameter) {
 
 	#ifdef PP_MATRIX_OUTPUT
 	cout << "Obj Function:\t"; 	Vector_Print(PD_c, PP_EPS_ZERO); cout << endl;
-	cout << "v =\t\t"; Vector_Print(PD_v, PP_EPS_ZERO); cout << endl;
-	cout << endl;
+	//cout << "v =\t\t"; Vector_Print(PD_v, PP_EPS_ZERO);
 	#endif // PP_MATRIX_OUTPUT
 
 	cout << "Starting ObjF = " << setprecision(PP_SETW) << ObjF(PD_v) << setprecision(PP_SETW / 2) << endl;
@@ -406,7 +406,7 @@ void PC_bsf_ProblemOutput(PT_bsf_reduceElem_T* reduceResult, int reduceCounter, 
 	cout << setprecision(PP_SETW / 2);
 
 	#ifdef PP_MATRIX_OUTPUT
-	cout << "v =\t\t"; Vector_Print(PD_v, PP_EPS_ZERO); cout << endl;
+	//cout << "v =\t\t"; Vector_Print(PD_v, PP_EPS_ZERO);
 	#endif // PP_MATRIX_OUTPUT
 
 	cout << "=================================================" << endl;
@@ -440,14 +440,13 @@ void PC_bsf_ProblemOutput_3(PT_bsf_reduceElem_T_3* reduceResult, int reduceCount
 }
 
 void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter, PT_bsf_parameter_T* parameter, int* nextJob, bool* exit) {
-	bool nextBasisSuccess;
 	int exit_code;
 
 	if (reduceCounter == 0) {
 		double lambda = -1;
 
 		#ifdef _DEBUG
-		cout << "---------> Basis Replace" << endl;
+		cout << "---------> Basis Scroll" << endl;
 		#endif // _DEBUG
 
 		while (lambda < PP_EPS_ZERO) {
@@ -471,7 +470,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	CheckBelongnessToPolytope(reduceResult->v_nex, exit);
 	if (*exit)
 		return;
-	#endif
+	#endif // _DEBUG
 
 	if (Exit(PD_v_nex, reduceResult->v_nex, &exit_code)) {
 
@@ -501,6 +500,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	}
 
 	#ifdef _DEBUG
+	cout << "||d|| = " << reduceResult->norm_d << endl;
 	if (!PointIsVertex(reduceResult->v_nex, PP_EPS_INVERSE, PP_EPS_ON_HYPERPLANE)) {
 		cout << "PC_bsf_ProcessResults error: reduceResult->v_nex is NOT vertex with precision of PP_EPS_ON_HYPERPLANE = "
 			<< PP_EPS_ON_HYPERPLANE << " and PP_EPS_ZERO = " << PP_EPS_ZERO << endl;
@@ -514,6 +514,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	Vector_i_Copy(PD_basis_v_nex, PD_basis_v);
 	Vector_Copy(reduceResult->v_nex, PD_v_nex);
 	PD_i_star = reduceResult->i_star;
+	PD_j_star = reduceResult->j_star;
 	PD_jumpLength = Distance_PointToPoint(PD_v, PD_v_nex);
 
 	#ifdef PP_ITER_OUTPUT
@@ -528,29 +529,7 @@ void PC_bsf_ProcessResults(PT_bsf_reduceElem_T* reduceResult, int reduceCounter,
 	SaveIterResult(PD_v, PP_SCALE_FACTOR);
 	#endif // PP_SAVE_CURRENT_VERTEX
 
-	Bitscale_Create(PD_basisBitscale_v, PD_m, PD_basis_v, PD_n);
-
-	PD_mne_v_nex = 0;
-	List_neHyperplanes_v(PD_v_nex, PD_neHyperplanes, PD_mne, PD_neHyperplanes_v_nex, &PD_mne_v_nex, PP_EPS_ON_HYPERPLANE);
-	assert(0 < PD_mne_v_nex && PD_mne_v_nex <= PP_MM);
-
-	#ifdef _DEBUG
-	CheckRank(PD_neHyperplanes_v_nex, PD_mne_v_nex, exit, PP_EPS_INVERSE);
-	if (*exit) {
-		cout << "PC_bsf_ProcessResults error: v_next is NOT vertex with precision of PP_EPS_ON_HYPERPLANE = "
-			<< PP_EPS_ON_HYPERPLANE << endl;
-		return;
-	}
-	#endif // _DEBUG
-
-	Basis_Update(PD_neHyperplanes_v_nex, PD_mne_v_nex, PD_basisBitscale_v, PD_i_star, PD_basis_v_nex,
-		&nextBasisSuccess, PP_EPS_ZERO);
-
-	if (!nextBasisSuccess) {
-		cout << "Can't create next basis!!!" << endl;
-		*exit = true;
-		return;
-	}
+	PD_basis_v_nex[PD_i_star] = PD_j_star;
 
 	Vector_Copy(PD_v_nex, parameter->v);
 	Vector_i_Copy(PD_basis_v_nex, parameter->basis_v);
@@ -573,25 +552,41 @@ void PC_bsf_ReduceF(PT_bsf_reduceElem_T* x, PT_bsf_reduceElem_T* y, PT_bsf_reduc
 	#ifdef PP_GRADIENT
 	if (x->objF_grd > y->objF_grd) {
 		z->i_star = x->i_star;
+		z->j_star = x->j_star;
 		z->objF_grd = x->objF_grd;
 		z->objF_nex = x->objF_nex;
+		#ifdef _DEBUG
+		z->norm_d = x->norm_d;
+		#endif
 		Vector_Copy((*x).v_nex, (*z).v_nex);
 	}
 	else {
 		z->i_star = y->i_star;
+		z->j_star = y->j_star;
 		z->objF_grd = y->objF_grd;
 		z->objF_nex = y->objF_nex;
+		#ifdef _DEBUG
+		z->norm_d = y->norm_d;
+		#endif
 		Vector_Copy((*y).v_nex, (*z).v_nex);
 	}
 	#else
 	if (x->objF_nex > y->objF_nex) {
 		z->i_star = x->i_star;
+		z->j_star = x->j_star;
 		z->objF_nex = x->objF_nex;
+		#ifdef _DEBUG
+		z->norm_d = x->norm_d;
+		#endif
 		Vector_Copy((*x).v_nex, (*z).v_nex);
 	}
 	else {
 		z->i_star = y->i_star;
+		z->j_star = y->j_star;
 		z->objF_nex = y->objF_nex;
+		#ifdef _DEBUG
+		z->norm_d = y->norm_d;
+		#endif
 		Vector_Copy((*y).v_nex, (*z).v_nex);
 	}
 	#endif // PP_GRADIENT
@@ -2922,29 +2917,7 @@ namespace PF {
 		return false;
 	}
 
-	static inline void Basis_Update(int* neHyperplanes_v_nex, int mne_v, bool* basisBitscale_v, int i_star,
-		int* basis_v_nex, bool* nextBasisSuccess, double eps_inverse)
-	{
-		int j_star = 0;
-
-		*nextBasisSuccess = false;
-
-		while (j_star < mne_v) {
-			if (basisBitscale_v[neHyperplanes_v_nex[j_star]]) {
-				j_star++;
-				continue;
-			}
-			bool success;
-			InsertIntoBasis(neHyperplanes_v_nex[j_star], basis_v_nex, i_star, &success, eps_inverse);
-			j_star++;
-			if (success) {
-				*nextBasisSuccess = true;
-				break;
-			}
-		}
-	}
-
-	static inline void GetUnitDirectionVector(double* v, int* edgeBasis, double* launchVector, double* d, bool* success) {
+	static inline void GetUnitDirectionVector(double* v, int* edgeBasis, double* launchVector, double* d, double* norm_d, bool* success) {
 		PT_vector_T z; // z = v + launchVector (||launchVector|| = PP_LAUNCH_VECTOR_LENGTH)
 		PT_vector_T w; // projection of z
 
@@ -2965,12 +2938,14 @@ namespace PF {
 		else
 			Vector_Subtraction(v, w, d);
 
-		if (Vector_Norm(d) < PP_EPS_ZERO) {
+		*norm_d = Vector_Norm(d);
+
+		if (*norm_d < PP_EPS_ZERO) {
 			*success = false;
 			return;
 		}
 
-		Vector_DivideEquals(d, Vector_Norm(d));
+		Vector_DivideEquals(d, *norm_d);
 
 		#ifdef PP_MIN_COS 
 		double cos = fabs(Vector_DotProduct(launchVector, d) / Vector_Norm(launchVector));
@@ -3013,12 +2988,16 @@ namespace PF {
 		cout << "ObjF = " << ObjF(v) << endl;
 		cout << "Jump length = " << jumpLength << endl;
 		#ifdef PP_MATRIX_OUTPUT
-		cout << "v =\t\t"; Vector_Print(v, PP_EPS_ZERO);
-		cout << endl;
+		//cout << "v =\t\t"; Vector_Print(v, PP_EPS_ZERO);
 		#endif // PP_MATRIX_OUTPUT
+
+		#ifdef _DEBUG
+		cout << "i* = " << PD_basis_v_nex[PD_i_star] << "\t\tj* = " << PD_j_star << endl;
+		#endif // _DEBUG
+
 	}
 
-	static inline void Jump(PT_vector_T startPoint, PT_vector_T jumpVector, PT_vector_T finishPoint, bool* parallelHPlanes, int* success, double eps_zero) {
+	static inline void Jump(PT_vector_T startPoint, PT_vector_T jumpVector, PT_vector_T finishPoint, bool* parallelHPlanes, int* j_star, int* success, double eps_zero) {
 		double* d = jumpVector;		// Direction vector
 		double* z = startPoint;
 		double lambda_min = PP_INFINITY;
@@ -3027,6 +3006,8 @@ namespace PF {
 		double norm_a_DOT_norm_d;
 		double b_MINUS_a_DOT_z;
 		PT_vector_T lambda_min_DOT_d;
+
+		*j_star = -1;
 
 		for (int i = 0; i < _m; i++) {
 
@@ -3050,8 +3031,10 @@ namespace PF {
 				continue;
 			}
 
-			if (lambda < lambda_min)
+			if (lambda < lambda_min) {
 				lambda_min = lambda;
+				*j_star = i;
+			}
 		}
 
 		if (lambda_min == PP_INFINITY) {

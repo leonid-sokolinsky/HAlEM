@@ -27,11 +27,12 @@ This include file is part of Problem-Parameters.h
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.3
 //------------------------------------------------------------------------------
-// Elapsed time: 0
-// Number of iterations: 1
+// Elapsed time: 0      (HAlEM no MPI)
+// Number of iterations: 3
 // Computed objective value: 3000
 // Maximal objective value:  3000
 // Relative error = 0
+// Distance to polytope: 0
 //------------------------------------------------------------------------------
 
 /*============================== angle04 LP problem ============================*
@@ -50,7 +51,7 @@ This include file is part of Problem-Parameters.h
 // Computed objective value: 3300
 // Maximal objective value:  3300
 // Relative error = 0
-// Distance to polytope: 6.5585675e-31
+// Distance to polytope: 5.1698788e-31
 //------------------------------------------------------------------------------
 
 /*============================== C5_10 LP problem ===============================*
@@ -71,14 +72,13 @@ This include file is part of Problem-Parameters.h
 #define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS 0.6
-#undef PP_GRADIENT
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 2
-// Computed objective value: 66428.999994801139109768
+// Number of iterations: 20
+// Computed objective value: 66429.0000012536911526695
 // Maximal objective value:  66429
-// Relative error = 7.83e-11
-// Distance to polytope: 3.2984045e-14
+// Relative error = 1.89e-11
+// Distance to polytope: 2.8993761e-13
 //------------------------------------------------------------------------------
 
 /*============================== cone3-0 LP problem ============================*
@@ -95,10 +95,10 @@ This include file is part of Problem-Parameters.h
 #define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 4
-// Computed objective value: 115
+// Number of iterations: 3
+// Computed objective value: 114.999999999999985789145
 // Maximal objective value:  115
-// Relative error = 0
+// Relative error = 1.24e-16
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
@@ -178,17 +178,19 @@ This include file is part of Problem-Parameters.h
 #endif
 #define PP_MAX_OBJ_VALUE 		60000
 //------------------------------------------------------------------------------
-#define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+5	// Length of Objective Vector
-//-------------------------- Compilation Modes ---------------------------------
-#define PP_LOAD_BASIS
+// https://sagecell.sagemath.org/
+// p = Polyhedron(ieqs = [[200,-1,0,0],[200,0,-1,0],[200,0,0,-1],[200,-1,1,0],[200,1,-1,0],[0,1,1,0],[400,-1,-1,0],[200,-1,0,1],[200,1,0,-1],[0,1,0,1],[400,-1,0,-1],[200,0,-1,1],[200,0,1,-1],[0,0,1,1],[400,0,-1,-1],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
+// p.plot()
+//------------------------------------------------------------------------------
+#define PP_EPS_ZERO				1E-9	// Precision for comparison with zero
+#define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
 // Number of iterations: 3
 // Computed objective value: 60000
 // Maximal objective value:  60000
 // Relative error = 0
-// Distance to polytope: 0
+// Distance to polytope: 8.5265128e-14
 //------------------------------------------------------------------------------
 
 /*============================== hamck26e LP problem ============================*
@@ -210,7 +212,7 @@ This include file is part of Problem-Parameters.h
 // Computed objective value: 3.24999999999999911182158
 // Maximal objective value:  3.25
 // Relative error = 2.73e-16
-// Distance to polytope: 3.7425611e-17
+// Distance to polytope: 2.398258e-30
 //------------------------------------------------------------------------------
 
 /*============================== hamck26s LP problem ============================*
@@ -247,11 +249,11 @@ This include file is part of Problem-Parameters.h
 #define PP_MIN_COS				0.4
 //------------------------------------------------------------------------------
 // Elapsed time: 0      (HAlEM no MPI)
-// Number of iterations: 4
+// Number of iterations: 5
 // Computed objective value: 21.4549732313097933911195
 // Maximal objective value:  21.4549732313097933911195
 // Relative error = 0
-// Distance to polytope: 0
+// Distance to polytope: 3.1904014e-18
 //------------------------------------------------------------------------------
 
 /*============================== pyramid LP problem ============================*
@@ -314,7 +316,7 @@ This include file is part of Problem-Parameters.h
 #define PP_MIN_COS				0.5
 //------------------------------------------------------------------------------
 // Elapsed time: 0
-// Number of iterations: 3
+// Number of iterations: 5
 // Computed objective value: 452.604395604395620011928
 // Maximal objective value:  452.604395604395620011928
 // Relative error = 0
@@ -376,7 +378,7 @@ This include file is part of Problem-Parameters.h
 // p.plot()
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.2
 //------------------------------------------------------------------------------
@@ -407,14 +409,14 @@ This include file is part of Problem-Parameters.h
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
-/*============================== rnd5-100 LP problem ===========================*/
+/*============================== rnd5-100 LP problem ===========================*
 #define PP_PROBLEM_NAME	"rnd5-100"
 #define PP_M 105		// Number of equations (number of rows in *.mtx)
 #define PP_N 110		// Number of variables (number of cols in *.mtx)
 #define PP_MAX_OBJ_VALUE 617.504337008263632924354
 //------------------------------------------------------------------------------
 #define PP_EPS_ZERO				1E-10	// Precision for comparison with zero
-#define PP_LAUNCH_VECTOR_LENGTH	1E+6	// Length of Objective Vector
+#define PP_LAUNCH_VECTOR_LENGTH	1E+7	// Length of Objective Vector
 //-------------------------- Compilation Modes ---------------------------------
 #define PP_MIN_COS				0.6
 //------------------------------------------------------------------------------
@@ -691,7 +693,7 @@ This include file is part of Problem-Parameters.h
 // Distance to polytope: 0
 //------------------------------------------------------------------------------
 
-/*============================== zieglerC4_8 LP problem ===============================*
+/*============================== zieglerC4_8 LP problem ===============================*/
 #define PP_PROBLEM_NAME	"zieglerC4_8"
 #define PP_MPS_FORMAT
 #define PP_M 20		// Number of constrains

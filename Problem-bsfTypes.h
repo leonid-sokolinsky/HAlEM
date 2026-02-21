@@ -10,7 +10,7 @@ This source code is a part of BSF Skeleton
 #include "Problem-Types.h"		// Problem Types 
 //=========================== BSF Types =========================
 struct PT_bsf_parameter_T {		// Type of Parameter for workers (current approximation)
-	PT_vector_T v;		// Current vertex
+	PT_vector_T v;			// Current vertex
 	PT_vector_i_T basis_v;	// Current basis in v
 };
 
@@ -23,6 +23,10 @@ struct PT_bsf_reduceElem_T {	// Type of reduce-list elements for Job 0 (default)
 	double objF_nex;	// F(v_nex)
 	double objF_grd;	// Value of objective function after one unit movement
 	int i_star;			// Index to replace
+	int j_star;			// Index to append
+	#ifdef _DEBUG
+	double norm_d;
+	#endif
 };
 
 struct PT_bsf_reduceElem_T_1 {	// Type of reduce-list elements for Job 1

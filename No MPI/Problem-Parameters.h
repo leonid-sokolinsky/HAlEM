@@ -51,15 +51,15 @@ This source code has been produced with using BSF-skeleton
 //#define PP_BASIS_GAUGE
 #define PP_CHECK_MAX_OBJ_VALUE // Exit if relative error of computed maximum of objective function is less than PP_EPS_RELATIVE_ERROR (demands #define PP_MAX_OBJ_VALUE)
 
-#ifndef PP_EPS_INVERSE
+#ifndef PP_EPS_INVERSE				// Accuracy for comparison with zero when calculating inverse matrix
 #define PP_EPS_INVERSE PP_EPS_ZERO
 #endif
 
-#ifndef PP_EPS_ON_HYPERPLANE
+#ifndef PP_EPS_ON_HYPERPLANE		// Accuracy of belonging to hyperplane
 #define PP_EPS_ON_HYPERPLANE PP_EPS_ZERO
 #endif
 
-#ifndef PP_EPS_RELATIVE_ERROR
+#ifndef PP_EPS_RELATIVE_ERROR		// Termination criteria
 #define PP_EPS_RELATIVE_ERROR PP_EPS_ZERO
 #endif
 

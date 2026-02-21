@@ -37,15 +37,13 @@ static int PD_mne;						// Number of all boundary hyperplanes
 
 static int PD_neHyperplanes_v[PP_MM];	// Index of boundary hyperplanes that include vertex v
 static int PD_mne_v;					// Number of boundary hyperplanes that include vertex v
-static int PD_neHyperplanes_v_nex[PP_MM];	// Index of boundary hyperplanes that include vertex v_nex
-static int PD_mne_v_nex;				// Number of boundary hyperplanes that include vertex v_nex
 static int PD_basis_v[PP_N];			// Basis in vertex v
 static int PD_basis_v_nex[PP_N];		// Basis in next vertex
 
 static int PD_i_star;					// Item index to exclude from basis of v
+static int PD_j_star;					// Item index to include into basis of v
 
 static double PD_jumpLength;
-static PT_bitscale_T PD_basisBitscale_v;// Bit scale that tags all hyperplanes forming a basis for v_nex
 
 // Change basis
 static double PD_A0[PP_N][PP_N];		// A_basis_v * v = basis_b
